@@ -60,10 +60,10 @@ function render(){
   pointBounds=values.length?[Math.min(...values),Math.max(...values)]:[0,1];
   $('board-title').textContent=`Week ${week} · ${position==='DST'?'Defense / special teams':position} outlook`;
   $('count').textContent=`${visible.length} OPTIONS`;
-  $('score-note').textContent=position==='DST'?'D/ST v0.2: compact inputs; league-average turnover/TD/block/safety estimates. Scoreboard points allowed; platform scoring may differ.':
+  $('score-note').textContent=position==='DST'?'D/ST v0.3: pass-play opportunities, event rates and available pregame lines. Statistical fallback when lines are missing. Platform scoring may differ.':
     ['DL','LB','DB'].includes(position)?'IDP uses the displayed Fieldwork scoring preset. Position assignments follow roster data and may differ from your league.':
     position==='K'?'Kicker scoring: 3/4/5 by distance, +1 PAT, −1 missed FG/PAT. Blocked attempts are not deducted.':
-    'Compare the model with the rolling baseline. The 2025 test did not show an offensive-position MAE advantage for this model.';
+    'Compare the model with the rolling baseline. Accuracy results use 2025 weeks 13-18; RB and WR still trail the baseline on MAE.';
   let tier=0, leader=Infinity;
   $('rows').innerHTML=visible.map((p,i)=>{
     const f=forecast(p), mean=f.mean[s];
@@ -88,11 +88,22 @@ function renderMatchups(){
       const extent=Math.max(1,...[...teams.values()].map(t=>Math.abs(t.values[pos]??0)));
       return `<td style="${shade(Math.abs(v)/extent,v>=0)}">${v>0?'+':''}${fmt(v)}</td>`;
     }).join('')}</tr>`).join('');
+  renderTeamOutlook();
+}
+function renderTeamOutlook(){
+  if(!data.team_outlook) return;
+  const pos=$('team-position').value;
+  const rows=data.team_outlook.forecasts.filter(f=>f.pos===pos&&f.week===Number($('week').value))
+    .sort((a,b)=>b.matchup_bonus-a.matchup_bonus);
+  const extent=Math.max(1,...rows.map(r=>Math.abs(r.matchup_bonus)));
+  $('team-outlook-rows').innerHTML=rows.map(r=>`<tr><td>${esc(r.team)}</td><td>${esc(r.opponent)}</td><td>${fmt(r.neutral_opponent)}</td><td style="${shade(Math.abs(r.matchup_bonus)/extent,r.matchup_bonus>=0)}">${r.matchup_bonus>0?'+':''}${fmt(r.matchup_bonus)}</td><td>${fmt(r.projection)}</td><td>${fmt(r.rolling_baseline)}</td></tr>`).join('');
+  const v=data.team_outlook.validation[pos];
+  $('team-outlook-note').textContent=`Independent ${pos} team totals, full PPR. Neutral opponent + matchup bonus = total. This baseline is defined differently from Subvertadown. Late-2025 MAE: model ${fmt(v.mae)}, rolling baseline ${fmt(v.baseline_mae)}; lower is better.`;
 }
 function renderValidation(){
   const entries=Object.entries(data.validation), wins=entries.filter(([,v])=>v.beats_baseline_mae).length;
   const pos=position==='FLEX'?'WR':position, current=data.validation[pos];
-  $('validation-cards').innerHTML=`<div class="metric"><span class="eyebrow">LOWER MAE THAN BASELINE</span><strong>${wins} / ${entries.length}</strong><p>Position groups, using the fixed 2025 test.</p></div><div class="metric"><span class="eyebrow">${esc(pos)} MODEL ERROR</span><strong>${current.mae.toFixed(2)}</strong><p>Mean absolute error, in fantasy points.</p></div><div class="metric"><span class="eyebrow">${esc(pos)} RANGE COVERAGE</span><strong>${(current.interval_coverage*100).toFixed(0)}%</strong><p>Observed coverage; nominal target is 80%.</p></div>`;
+  $('validation-cards').innerHTML=`<div class="metric"><span class="eyebrow">LOWER MAE THAN BASELINE</span><strong>${wins} / ${entries.length}</strong><p>Position groups, using 2025 weeks 13-18.</p></div><div class="metric"><span class="eyebrow">${esc(pos)} MODEL ERROR</span><strong>${current.mae.toFixed(2)}</strong><p>Mean absolute error, in fantasy points.</p></div><div class="metric"><span class="eyebrow">${esc(pos)} RANGE COVERAGE</span><strong>${(current.interval_coverage*100).toFixed(0)}%</strong><p>Observed coverage; nominal target is 80%.</p></div>`;
   $('validation-rows').innerHTML=entries.map(([p,v])=>`<tr><td>${esc(p)}</td><td>${v.n.toLocaleString()}</td><td class="${v.beats_baseline_mae?'good':'bad'}">${v.mae.toFixed(2)}</td><td>${v.baseline_mae.toFixed(2)}</td><td>${v.rmse.toFixed(2)}</td><td>${v.baseline_rmse.toFixed(2)}</td><td>${(v.interval_coverage*100).toFixed(1)}%</td></tr>`).join('');
   $('weekly-title').textContent=`${pos} · week-by-week error`;
   const max=Math.max(...current.weekly.flatMap(w=>[w.mae,w.baseline_mae]),1);
@@ -101,7 +112,7 @@ function renderValidation(){
 function showPlayer(id){
   const p=data.players.find(x=>x.id===id), f=forecast(p), s=scoring();
   const usage=Object.entries(f.usage).filter(([,v])=>v!==0);
-  $('detail-content').innerHTML=`<h2>${esc(p.name)}</h2><p>${esc(p.team)} · ${esc(p.pos)} · Week ${f.week} ${f.home?'vs':'@'} ${esc(f.opponent)} · ${esc(f.date)}</p>${status(p,f)}<div class="metric-grid"><div class="metric"><span class="eyebrow">MODEL</span><strong>${fmt(f.mean[s])}</strong></div><div class="metric"><span class="eyebrow">BASELINE</span><strong>${fmt(f.baseline[s])}</strong></div><div class="metric"><span class="eyebrow">HISTORY</span><strong>${p.history_games}</strong></div></div><p>Estimated 80% outcome range: ${fmt(f.p10[s])} to ${fmt(f.p90[s])}. These are conditional-on-playing estimates. ${f.low_history?'Limited history: treat this as a provisional statistical estimate.':''}</p><h3>Projected scoring components</h3><div class="stat-list">${Object.entries(f.stats).map(([k,v])=>`<div><span>${esc(k.replaceAll('_',' '))}</span><b>${fmt(v)}</b></div>`).join('')}</div><h3>Prior workload</h3><p>Recency-weighted history, not next week’s projected usage. Last observed game: ${esc(p.last_played||'none')}. Latest relevant snap share: ${(f.latest_snap_pct*100).toFixed(0)}%.</p><div class="stat-list">${usage.map(([k,v])=>`<div><span>${esc(k.replaceAll('_',' '))}</span><b>${fmt(v)}</b></div>`).join('')||'<div>No prior workload recorded.</div>'}</div><h3>Matchup context</h3><p>Opponents at this position scored ${fmt(f.matchup_residual)} PPR points above their prior rolling baselines on average across up to six recent matchups. This is group-level descriptive context, not an individual boost. ${p.pos==='DST'?'D/ST v0.2 excludes this residual from its model inputs.':''}</p>`;
+  $('detail-content').innerHTML=`<h2>${esc(p.name)}</h2><p>${esc(p.team)} · ${esc(p.pos)} · Week ${f.week} ${f.home?'vs':'@'} ${esc(f.opponent)} · ${esc(f.date)}</p>${status(p,f)}<div class="metric-grid"><div class="metric"><span class="eyebrow">MODEL</span><strong>${fmt(f.mean[s])}</strong></div><div class="metric"><span class="eyebrow">BASELINE</span><strong>${fmt(f.baseline[s])}</strong></div><div class="metric"><span class="eyebrow">HISTORY</span><strong>${p.history_games}</strong></div></div><p>Estimated 80% outcome range: ${fmt(f.p10[s])} to ${fmt(f.p90[s])}. These are conditional-on-playing estimates. ${f.low_history?'Limited history: treat this as a provisional statistical estimate.':''}</p><h3>Projected scoring components</h3><div class="stat-list">${Object.entries(f.stats).map(([k,v])=>`<div><span>${esc(k.replaceAll('_',' '))}</span><b>${fmt(v)}</b></div>`).join('')}</div>${f.market_used?`<h3>Pregame market context</h3><p>Implied scoreboard points: team ${fmt(f.implied_points[0])}, opponent ${fmt(f.implied_points[1])}. Historical evaluation uses closing lines; current quotes can move.</p>`:''}<h3>Prior workload</h3><p>Recency-weighted history, not next week’s projected usage. Last observed game: ${esc(p.last_played||'none')}. Latest relevant snap share: ${(f.latest_snap_pct*100).toFixed(0)}%.</p><div class="stat-list">${usage.map(([k,v])=>`<div><span>${esc(k.replaceAll('_',' '))}</span><b>${fmt(v)}</b></div>`).join('')||'<div>No prior workload recorded.</div>'}</div><h3>Matchup context</h3><p>Opponents at this position scored ${fmt(f.matchup_residual)} PPR points above their prior rolling baselines on average across up to six recent matchups. This is group-level descriptive context, not an individual boost. ${p.pos==='DST'?'This descriptive residual is not a direct multiplier on the forecast.':''}</p>`;
   $('detail').showModal();
 }
 function downloadCSV(){
@@ -119,6 +130,7 @@ document.querySelectorAll('[data-pos]').forEach(b=>b.addEventListener('click',()
   position=b.dataset.pos;document.querySelectorAll('[data-pos]').forEach(x=>x.classList.toggle('active',x===b));render();
 }));
 ['week','scoring','deep'].forEach(id=>$(id).addEventListener('change',render));$('search').addEventListener('input',render);
+$('team-position').addEventListener('change',renderTeamOutlook);
 $('rows').addEventListener('click',e=>{const b=e.target.closest('[data-player]');if(b)showPlayer(b.dataset.player);});
 $('export').addEventListener('click',downloadCSV);$('close-detail').addEventListener('click',()=>$('detail').close());
 fetch('data/projections.json').then(r=>{if(!r.ok)throw Error(`Projection bundle unavailable (${r.status}). Run the pipeline or check the latest Actions build.`);return r.json();}).then(d=>{

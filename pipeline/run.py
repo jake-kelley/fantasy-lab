@@ -9,6 +9,11 @@ import numpy as np
 from .data import Sources, ROOT, normalize_team, number
 from .model import (POSITIONS, KEYS, TEAM, USAGE, Estimator, dataset, distribution,
                     group, prepare, score, targets, weighted)
+from .dst_factors import annotate
+from .configured_model import ConfiguredEstimator
+from .team_outlook import build as build_team_outlook
+from .market_context import annotate_market, market_features
+from .role_history import annotate_roles, role_average
 
 
 def dump(path, data):
@@ -45,11 +50,15 @@ def run(refresh=False):
     known_games = [g for g in games if g['gameday'] <= today]
     rows, team_index, join_audit = prepare(players, teams, snaps, ids, known_games)
     ds, feature_state = dataset(rows, team_index)
+    factor_state = annotate(ds, team_index)
+    annotate_market(ds,games)
+    annotate_roles(ds)
     print(f'Prepared {len(ds):,} player/team games; {join_audit}', flush=True)
 
-    # D/ST settings frozen by the recorded 2024-only development experiment.
+    # Preserve v0.2 metadata for audits; current settings are per-position below.
     dst_selection = json.loads((ROOT/'research'/'dst-selection.json').read_text())
-    def estimator(): return Estimator(dst_retention=dst_selection['retention'])
+    position_selection = json.loads((ROOT/'research'/'position-selection-extended.json').read_text())
+    def estimator(): return ConfiguredEstimator(position_selection)
     warm_train = [r for r in ds if r['season'] == 2024 and 5 <= r['week'] <= 12]
     calibration = [r for r in ds if r['season'] == 2024 and r['week'] >= 13]
     warm_model = estimator().fit(warm_train)
@@ -64,7 +73,8 @@ def run(refresh=False):
                                       for j, p in enumerate([0,.5,1])] for i in ix])
 
     train = [r for r in ds if r['season'] == 2024 and r['week'] >= 5]
-    test = [r for r in ds if r['season'] == 2025]
+    # Earlier 2025 games now participate in hyperparameter selection. Report the later window.
+    test = [r for r in ds if r['season'] == 2025 and r['week'] >= 13]
     model = estimator().fit(train)
     test_pred = model.predict(test)
     report, predictions = {}, []
@@ -142,6 +152,10 @@ def run(refresh=False):
             first_game = game_map.get((week, p['team']))
             r['as_of_date'] = first_game['gameday'] if first_game else today
             r['x'], r['baseline'], r['matchup'] = feature_state.row(r)
+            r['factor_x'] = factor_state.row(r)
+            r['market_x'] = market_features(g,home)
+            if p['pos']=='QB':
+                for band in [.15,.35]:r[f'role_{band}']=role_average(feature_state.players[p['id']],season,band)
             future_rows.append(r); references.append(p)
     future_pred = production.predict(future_rows)
     for r, pred, p in zip(future_rows, future_pred, references):
@@ -160,24 +174,29 @@ def run(refresh=False):
                                   baseline=[round(float(v), 2) for v in r['baseline_scores']],
                                   stats=detail, matchup_residual=round(r['matchup'], 2),
                                   low_history=low_history, unavailable=unavailable,
+                                  market_used=bool(position_selection['positions'][p['pos']]['selected'].get('market') and np.isfinite(r['market_x']).all()),
+                                  implied_points=r['market_x'].tolist() if np.isfinite(r['market_x']).all() else None,
                                   usage={k: round(float(v), 2) for k, v in zip(USAGE, usage)},
                                   latest_snap_pct=number(recent, 'defense_pct' if p['pos'] in ['DL','LB','DB'] else 'offense_pct')))
     for p in current.values(): p['forecasts'].sort(key=lambda f: f['week'])
 
-    payload = dict(version='0.2.0', generated_at=started.isoformat(), season=season, weeks=weeks,
+    payload = dict(version='0.3.0', generated_at=started.isoformat(), season=season, weeks=weeks,
                    observations_through=max(r['date'] for r in rows), model='Position-specific ridge component model',
                    train_seasons=[2024,2025], validation_season=2025, players=list(current.values()),
                    validation=report, sources=sources.manifest, joins=join_audit,
                    dst_revision=dst_selection,
+                   position_selection=position_selection, validation_weeks=list(range(13,19)),
+                   team_outlook=build_team_outlook(ds, factor_state, games, season, weeks),
                    limitations=[
                        'Research model, not proven to beat expert projections. See historical results by position.',
-                       'D/ST v0.2 uses 15 inputs and training-league averages for turnovers, TDs, blocks and safeties. It omits the explicit matchup residual.',
-                       'D/ST revision was motivated by inspected results; 2024 selected its settings, and 2025 is a retrospective comparison, not a pristine holdout.',
+                       'D/ST forecasts pass-play opportunities and event rates; K and D/ST use available pregame totals/spreads, with a statistical fallback when absent.',
+                       'Position settings selected on 2024 weeks 9-12 and 2025 weeks 1-12. Report shows 2025 weeks 13-18; prior inspection means it is retrospective, not pristine validation.',
                        'Historical evaluation conditions on recorded participation; it does not test injury/DNP prediction.',
                        'Projections are conditional on playing. Current injury flags persist into future weeks; return dates are not modeled.',
                        '80% ranges are empirical residual estimates; use measured coverage, not an assumed guarantee.',
                        'D/ST preset uses scoreboard points allowed. It is not exact Sleeper/ESPN/Yahoo scoring.',
-                       'No live routes, coverage charting, betting lines or weather inputs. No paid data.',
+                       'Historical market inputs are closing lines, not archived Tuesday quotes; market-model backtests do not establish Tuesday forecast accuracy.',
+                       'No live routes, coverage charting or weather inputs. No paid data.',
                        'Two seasons limit rare-event and rookie estimates. Future weeks hold current workload assumptions fixed.',
                        'Matchup chart shows past points above a rolling baseline, not a causal percentage boost.',
                    ])

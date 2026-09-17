@@ -1,0 +1,1329 @@
+{
+  "selection": {
+    "period": "2024 weeks 9-12; expanding training ends weeks 8 and 10",
+    "criterion": "MAE",
+    "history": {
+      "decay": 0.9,
+      "season_weight": 0.35,
+      "pseudo_games": 4
+    },
+    "positions": {
+      "QB": {
+        "selected": {
+          "family": "factors",
+          "alpha": 100,
+          "retention": 0.5,
+          "context": false
+        },
+        "results": [
+          {
+            "config": {
+              "family": "current"
+            },
+            "n": 136,
+            "mae": 6.063450341929887,
+            "rmse": 7.544978739734107
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0,
+              "context": true
+            },
+            "n": 136,
+            "mae": 5.886535846234344,
+            "rmse": 7.291365585908263
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 136,
+            "mae": 5.964944731832257,
+            "rmse": 7.42075348099066
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 1,
+              "context": true
+            },
+            "n": 136,
+            "mae": 6.155162039546022,
+            "rmse": 7.772887336447284
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0,
+              "context": true
+            },
+            "n": 136,
+            "mae": 5.890836461751762,
+            "rmse": 7.170792470215201
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 136,
+            "mae": 5.92072833515591,
+            "rmse": 7.251973171867884
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 1,
+              "context": true
+            },
+            "n": 136,
+            "mae": 6.027816370427132,
+            "rmse": 7.474609495263349
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0,
+              "context": true
+            },
+            "n": 136,
+            "mae": 5.988065425090943,
+            "rmse": 7.208750326586079
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 136,
+            "mae": 5.978450686450774,
+            "rmse": 7.212123015022789
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 1,
+              "context": true
+            },
+            "n": 136,
+            "mae": 6.010103673730767,
+            "rmse": 7.295498952392746
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": false
+            },
+            "n": 136,
+            "mae": 5.800582067049576,
+            "rmse": 7.040295124565222
+          }
+        ]
+      },
+      "RB": {
+        "selected": {
+          "family": "current"
+        },
+        "results": [
+          {
+            "config": {
+              "family": "current"
+            },
+            "n": 353,
+            "mae": 3.969393136518528,
+            "rmse": 5.740918560141008
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0,
+              "context": true
+            },
+            "n": 353,
+            "mae": 4.12976532356394,
+            "rmse": 5.69314383746753
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 353,
+            "mae": 4.131349741480725,
+            "rmse": 5.710302093255052
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 1,
+              "context": true
+            },
+            "n": 353,
+            "mae": 4.165998937192212,
+            "rmse": 5.758624357555612
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0,
+              "context": true
+            },
+            "n": 353,
+            "mae": 4.082265304168537,
+            "rmse": 5.642251754255945
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 353,
+            "mae": 4.0762932172477,
+            "rmse": 5.645995701262776
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 1,
+              "context": true
+            },
+            "n": 353,
+            "mae": 4.091852039596071,
+            "rmse": 5.67297794109931
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0,
+              "context": true
+            },
+            "n": 353,
+            "mae": 4.138324046752859,
+            "rmse": 5.662714287909451
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 353,
+            "mae": 4.119706705063585,
+            "rmse": 5.6518945853145315
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 1,
+              "context": true
+            },
+            "n": 353,
+            "mae": 4.117480432188401,
+            "rmse": 5.655750861755537
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": false
+            },
+            "n": 353,
+            "mae": 4.017979988892303,
+            "rmse": 5.596871876024371
+          }
+        ]
+      },
+      "WR": {
+        "selected": {
+          "family": "factors",
+          "alpha": 100,
+          "retention": 0.5,
+          "context": false
+        },
+        "results": [
+          {
+            "config": {
+              "family": "current"
+            },
+            "n": 571,
+            "mae": 4.113230122237822,
+            "rmse": 6.01549868317244
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0,
+              "context": true
+            },
+            "n": 571,
+            "mae": 4.153210937503621,
+            "rmse": 5.950791418111899
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 571,
+            "mae": 4.177427282798821,
+            "rmse": 5.977207567256643
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 1,
+              "context": true
+            },
+            "n": 571,
+            "mae": 4.210146925006554,
+            "rmse": 6.013543346756599
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0,
+              "context": true
+            },
+            "n": 571,
+            "mae": 4.160299263850868,
+            "rmse": 5.933316209648372
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 571,
+            "mae": 4.179325364430313,
+            "rmse": 5.954400500391464
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 1,
+              "context": true
+            },
+            "n": 571,
+            "mae": 4.202101380667114,
+            "rmse": 5.983401438026387
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0,
+              "context": true
+            },
+            "n": 571,
+            "mae": 4.203870612681054,
+            "rmse": 5.940559445584796
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 571,
+            "mae": 4.215421876057593,
+            "rmse": 5.952725285739233
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 1,
+              "context": true
+            },
+            "n": 571,
+            "mae": 4.228032443839192,
+            "rmse": 5.970338943462053
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": false
+            },
+            "n": 571,
+            "mae": 4.102967499670993,
+            "rmse": 5.898842681206978
+          }
+        ]
+      },
+      "TE": {
+        "selected": {
+          "family": "factors",
+          "alpha": 100,
+          "retention": 0,
+          "context": true
+        },
+        "results": [
+          {
+            "config": {
+              "family": "current"
+            },
+            "n": 342,
+            "mae": 3.407430487697261,
+            "rmse": 5.296257793827221
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0,
+              "context": true
+            },
+            "n": 342,
+            "mae": 3.323622709074006,
+            "rmse": 5.252714277918315
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 342,
+            "mae": 3.3540496154544077,
+            "rmse": 5.269114572271717
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 1,
+              "context": true
+            },
+            "n": 342,
+            "mae": 3.396984827101124,
+            "rmse": 5.305201253989512
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0,
+              "context": true
+            },
+            "n": 342,
+            "mae": 3.2883660066659224,
+            "rmse": 5.189678884905479
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 342,
+            "mae": 3.316705049371827,
+            "rmse": 5.2078209920036365
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 1,
+              "context": true
+            },
+            "n": 342,
+            "mae": 3.3556743760777183,
+            "rmse": 5.241733144352259
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0,
+              "context": true
+            },
+            "n": 342,
+            "mae": 3.3012933727623888,
+            "rmse": 5.1210473858758565
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 342,
+            "mae": 3.317618964303149,
+            "rmse": 5.13500780243109
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 1,
+              "context": true
+            },
+            "n": 342,
+            "mae": 3.3444983701092257,
+            "rmse": 5.161188684618715
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": false
+            },
+            "n": 342,
+            "mae": 3.3087614937423817,
+            "rmse": 5.20429732579594
+          }
+        ]
+      },
+      "K": {
+        "selected": {
+          "family": "current"
+        },
+        "results": [
+          {
+            "config": {
+              "family": "current"
+            },
+            "n": 112,
+            "mae": 3.6511563579644295,
+            "rmse": 4.683515387676502
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0,
+              "context": true
+            },
+            "n": 112,
+            "mae": 3.82552250945607,
+            "rmse": 4.940629022596797
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 112,
+            "mae": 3.845568357444225,
+            "rmse": 4.965431316859047
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 1,
+              "context": true
+            },
+            "n": 112,
+            "mae": 3.868334274018075,
+            "rmse": 4.993069595841274
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0,
+              "context": true
+            },
+            "n": 112,
+            "mae": 3.7007481365093846,
+            "rmse": 4.75537498322781
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 112,
+            "mae": 3.7092908393095505,
+            "rmse": 4.768302751568619
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 1,
+              "context": true
+            },
+            "n": 112,
+            "mae": 3.717982414079812,
+            "rmse": 4.782853915096106
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0,
+              "context": true
+            },
+            "n": 112,
+            "mae": 3.665519332893438,
+            "rmse": 4.664209913786478
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 112,
+            "mae": 3.666762145304179,
+            "rmse": 4.670213848365581
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 1,
+              "context": true
+            },
+            "n": 112,
+            "mae": 3.668702607954574,
+            "rmse": 4.67687771938192
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": false
+            },
+            "n": 112,
+            "mae": 3.6929049013874837,
+            "rmse": 4.657825542275879
+          }
+        ]
+      },
+      "DST": {
+        "selected": {
+          "family": "current"
+        },
+        "results": [
+          {
+            "config": {
+              "family": "current"
+            },
+            "n": 112,
+            "mae": 4.033796703391344,
+            "rmse": 5.321192750860736
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0,
+              "rates": true
+            },
+            "n": 112,
+            "mae": 4.321113254755842,
+            "rmse": 5.492204437644734
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0.5,
+              "rates": true
+            },
+            "n": 112,
+            "mae": 4.359341243845411,
+            "rmse": 5.547666858135478
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 1,
+              "rates": true
+            },
+            "n": 112,
+            "mae": 4.413961287123689,
+            "rmse": 5.65395701620939
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0,
+              "rates": true
+            },
+            "n": 112,
+            "mae": 4.213436731953444,
+            "rmse": 5.412712125397693
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "rates": true
+            },
+            "n": 112,
+            "mae": 4.238039061084917,
+            "rmse": 5.444484435280095
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 1,
+              "rates": true
+            },
+            "n": 112,
+            "mae": 4.2711794299174946,
+            "rmse": 5.510766692157012
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0,
+              "rates": true
+            },
+            "n": 112,
+            "mae": 4.106109389853883,
+            "rmse": 5.346152094373964
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0.5,
+              "rates": true
+            },
+            "n": 112,
+            "mae": 4.102929717884668,
+            "rmse": 5.354597918426875
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 1,
+              "rates": true
+            },
+            "n": 112,
+            "mae": 4.109600873280731,
+            "rmse": 5.380109478755119
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "rates": false
+            },
+            "n": 112,
+            "mae": 4.2414418028152046,
+            "rmse": 5.455466401503078
+          }
+        ]
+      },
+      "DL": {
+        "selected": {
+          "family": "factors",
+          "alpha": 100,
+          "retention": 0.5,
+          "context": false
+        },
+        "results": [
+          {
+            "config": {
+              "family": "current"
+            },
+            "n": 767,
+            "mae": 2.104262966649459,
+            "rmse": 2.9828113578579014
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0,
+              "context": true
+            },
+            "n": 767,
+            "mae": 2.086630909583369,
+            "rmse": 2.9526808451164195
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 767,
+            "mae": 2.0965361783718013,
+            "rmse": 2.9587744574341714
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 1,
+              "context": true
+            },
+            "n": 767,
+            "mae": 2.1126364832845996,
+            "rmse": 2.9762371713711624
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0,
+              "context": true
+            },
+            "n": 767,
+            "mae": 2.0894132062074005,
+            "rmse": 2.9477280869258786
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 767,
+            "mae": 2.0960421132378646,
+            "rmse": 2.9500060292149137
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 1,
+              "context": true
+            },
+            "n": 767,
+            "mae": 2.1089171536689184,
+            "rmse": 2.961754798798201
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0,
+              "context": true
+            },
+            "n": 767,
+            "mae": 2.110238582244799,
+            "rmse": 2.9471305717874703
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 767,
+            "mae": 2.1123465793618914,
+            "rmse": 2.9441516550266424
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 1,
+              "context": true
+            },
+            "n": 767,
+            "mae": 2.1185454446306315,
+            "rmse": 2.9477904266602284
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": false
+            },
+            "n": 767,
+            "mae": 2.0660019542805177,
+            "rmse": 2.9457393220853345
+          }
+        ]
+      },
+      "LB": {
+        "selected": {
+          "family": "factors",
+          "alpha": 30,
+          "retention": 0,
+          "context": true
+        },
+        "results": [
+          {
+            "config": {
+              "family": "current"
+            },
+            "n": 692,
+            "mae": 2.445303560687484,
+            "rmse": 3.2321030387236376
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0,
+              "context": true
+            },
+            "n": 692,
+            "mae": 2.3797728658492128,
+            "rmse": 3.2297461959453093
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 692,
+            "mae": 2.4082383129384737,
+            "rmse": 3.2414213215137484
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 1,
+              "context": true
+            },
+            "n": 692,
+            "mae": 2.4510713691652284,
+            "rmse": 3.272461579027453
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0,
+              "context": true
+            },
+            "n": 692,
+            "mae": 2.3873751080479777,
+            "rmse": 3.2136068184800264
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 692,
+            "mae": 2.4194565444834204,
+            "rmse": 3.2278231809564986
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 1,
+              "context": true
+            },
+            "n": 692,
+            "mae": 2.465969250720134,
+            "rmse": 3.2589087337222775
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0,
+              "context": true
+            },
+            "n": 692,
+            "mae": 2.418074647977131,
+            "rmse": 3.199707812736346
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 692,
+            "mae": 2.453150433057451,
+            "rmse": 3.2185302408798524
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 1,
+              "context": true
+            },
+            "n": 692,
+            "mae": 2.497528487977688,
+            "rmse": 3.249866334517377
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": false
+            },
+            "n": 692,
+            "mae": 2.408425711841665,
+            "rmse": 3.2061822367596062
+          }
+        ]
+      },
+      "DB": {
+        "selected": {
+          "family": "factors",
+          "alpha": 30,
+          "retention": 0,
+          "context": true
+        },
+        "results": [
+          {
+            "config": {
+              "family": "current"
+            },
+            "n": 873,
+            "mae": 2.0729437144409495,
+            "rmse": 2.788428952699564
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0,
+              "context": true
+            },
+            "n": 873,
+            "mae": 2.045115421647289,
+            "rmse": 2.7399363715886507
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 873,
+            "mae": 2.0513070982239485,
+            "rmse": 2.745482096875597
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 30,
+              "retention": 1,
+              "context": true
+            },
+            "n": 873,
+            "mae": 2.062386877825853,
+            "rmse": 2.758692588421409
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0,
+              "context": true
+            },
+            "n": 873,
+            "mae": 2.0487258189643756,
+            "rmse": 2.735931828594819
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 873,
+            "mae": 2.053799206269224,
+            "rmse": 2.74096423423663
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 1,
+              "context": true
+            },
+            "n": 873,
+            "mae": 2.0626102570779334,
+            "rmse": 2.7526556693201605
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0,
+              "context": true
+            },
+            "n": 873,
+            "mae": 2.067818764648969,
+            "rmse": 2.74036829679517
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 0.5,
+              "context": true
+            },
+            "n": 873,
+            "mae": 2.0708804117745565,
+            "rmse": 2.745095582956403
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 300,
+              "retention": 1,
+              "context": true
+            },
+            "n": 873,
+            "mae": 2.0771733867225106,
+            "rmse": 2.755016625119544
+          },
+          {
+            "config": {
+              "family": "factors",
+              "alpha": 100,
+              "retention": 0.5,
+              "context": false
+            },
+            "n": 873,
+            "mae": 2.0553121215632495,
+            "rmse": 2.745224819470664
+          }
+        ]
+      }
+    }
+  },
+  "positions": {
+    "QB": {
+      "current": {
+        "n": 674,
+        "mae": 6.794709779718155,
+        "rmse": 8.576525719146483,
+        "coverage": 0.8219584569732937
+      },
+      "candidate": {
+        "n": 674,
+        "mae": 6.64952461648037,
+        "rmse": 8.247937181495235,
+        "coverage": 0.8204747774480712
+      },
+      "baseline": {
+        "n": 674,
+        "mae": 6.5777066456250495,
+        "rmse": 8.497540760295967
+      }
+    },
+    "RB": {
+      "current": {
+        "n": 1760,
+        "mae": 4.239969611768084,
+        "rmse": 6.14432554859693,
+        "coverage": 0.7602272727272728
+      },
+      "candidate": {
+        "n": 1760,
+        "mae": 4.239969611768084,
+        "rmse": 6.14432554859693,
+        "coverage": 0.7602272727272728
+      },
+      "baseline": {
+        "n": 1760,
+        "mae": 4.004718812237569,
+        "rmse": 6.051605438924716
+      }
+    },
+    "WR": {
+      "current": {
+        "n": 2775,
+        "mae": 4.079172682019654,
+        "rmse": 5.665416764174281,
+        "coverage": 0.8057657657657658
+      },
+      "candidate": {
+        "n": 2775,
+        "mae": 4.030973486464745,
+        "rmse": 5.61604086171375,
+        "coverage": 0.7881081081081082
+      },
+      "baseline": {
+        "n": 2775,
+        "mae": 4.001645818003281,
+        "rmse": 5.77425282035885
+      }
+    },
+    "TE": {
+      "current": {
+        "n": 1666,
+        "mae": 3.3120690920500286,
+        "rmse": 5.300166784018215,
+        "coverage": 0.7551020408163265
+      },
+      "candidate": {
+        "n": 1666,
+        "mae": 2.981935737636284,
+        "rmse": 4.514519772503729,
+        "coverage": 0.7839135654261705
+      },
+      "baseline": {
+        "n": 1666,
+        "mae": 3.036154513138797,
+        "rmse": 4.718192082169853
+      }
+    },
+    "K": {
+      "current": {
+        "n": 543,
+        "mae": 3.9746223959223412,
+        "rmse": 4.907206182966446,
+        "coverage": 0.8066298342541437
+      },
+      "candidate": {
+        "n": 543,
+        "mae": 3.9746223959223412,
+        "rmse": 4.907206182966446,
+        "coverage": 0.8066298342541437
+      },
+      "baseline": {
+        "n": 543,
+        "mae": 4.136367820474268,
+        "rmse": 5.1532126800938745
+      }
+    },
+    "DST": {
+      "current": {
+        "n": 544,
+        "mae": 4.14630049343376,
+        "rmse": 5.352167756860192,
+        "coverage": 0.84375
+      },
+      "candidate": {
+        "n": 544,
+        "mae": 4.14630049343376,
+        "rmse": 5.352167756860192,
+        "coverage": 0.84375
+      },
+      "baseline": {
+        "n": 544,
+        "mae": 4.5607265492435145,
+        "rmse": 5.8597674830090405
+      }
+    },
+    "DL": {
+      "current": {
+        "n": 3646,
+        "mae": 1.8680145325615571,
+        "rmse": 2.702154149635081,
+        "coverage": 0.8288535381239714
+      },
+      "candidate": {
+        "n": 3646,
+        "mae": 1.8973409457711228,
+        "rmse": 2.692843627642646,
+        "coverage": 0.7970378496982995
+      },
+      "baseline": {
+        "n": 3646,
+        "mae": 1.9432034277953485,
+        "rmse": 2.7776985745571023
+      }
+    },
+    "LB": {
+      "current": {
+        "n": 3484,
+        "mae": 2.234440441250512,
+        "rmse": 3.021818068158131,
+        "coverage": 0.7758323765786452
+      },
+      "candidate": {
+        "n": 3484,
+        "mae": 2.2161718181092462,
+        "rmse": 3.03529590766653,
+        "coverage": 0.8194603903559128
+      },
+      "baseline": {
+        "n": 3484,
+        "mae": 2.2780491914263084,
+        "rmse": 3.1398958281660225
+      }
+    },
+    "DB": {
+      "current": {
+        "n": 4388,
+        "mae": 2.013671885463607,
+        "rmse": 2.7106097987566615,
+        "coverage": 0.8126709206927986
+      },
+      "candidate": {
+        "n": 4388,
+        "mae": 1.9893641745243802,
+        "rmse": 2.652216525983087,
+        "coverage": 0.8149498632634458
+      },
+      "baseline": {
+        "n": 4388,
+        "mae": 2.05648285373648,
+        "rmse": 2.7885466511352566
+      }
+    }
+  }
+}

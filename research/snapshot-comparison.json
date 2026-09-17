@@ -1,0 +1,1455 @@
+{
+  "note": "Agreement, not accuracy. Different scoring and baseline definitions. Expert values never used in fitting.",
+  "published_version": "0.2.0",
+  "candidate_version": "0.3.0",
+  "published": {
+    "QB": {
+      "n": 31,
+      "rank_correlation": 0.6684147377230345,
+      "mean_absolute_difference": 2.013225806451613,
+      "rows": [
+        {
+          "name": "Josh Allen",
+          "fieldwork": 20.01,
+          "subvertadown": 24.8
+        },
+        {
+          "name": "Caleb Williams",
+          "fieldwork": 18.64,
+          "subvertadown": 20.8
+        },
+        {
+          "name": "Lamar Jackson",
+          "fieldwork": 19.27,
+          "subvertadown": 20.3
+        },
+        {
+          "name": "Brock Purdy",
+          "fieldwork": 17.6,
+          "subvertadown": 20.0
+        },
+        {
+          "name": "Dak Prescott",
+          "fieldwork": 16.09,
+          "subvertadown": 19.1
+        },
+        {
+          "name": "Jayden Daniels",
+          "fieldwork": 19.92,
+          "subvertadown": 18.9
+        },
+        {
+          "name": "Patrick Mahomes",
+          "fieldwork": 17.95,
+          "subvertadown": 18.9
+        },
+        {
+          "name": "Matthew Stafford",
+          "fieldwork": 16.75,
+          "subvertadown": 18.5
+        },
+        {
+          "name": "Jalen Hurts",
+          "fieldwork": 18.02,
+          "subvertadown": 18.5
+        },
+        {
+          "name": "Justin Herbert",
+          "fieldwork": 17.36,
+          "subvertadown": 18.4
+        },
+        {
+          "name": "Baker Mayfield",
+          "fieldwork": 13.81,
+          "subvertadown": 18.0
+        },
+        {
+          "name": "Jaxson Dart",
+          "fieldwork": 22.09,
+          "subvertadown": 18.0
+        },
+        {
+          "name": "Drake Maye",
+          "fieldwork": 20.6,
+          "subvertadown": 17.9
+        },
+        {
+          "name": "Bryce Young",
+          "fieldwork": 16.52,
+          "subvertadown": 17.8
+        },
+        {
+          "name": "C.J. Stroud",
+          "fieldwork": 18.9,
+          "subvertadown": 17.6
+        },
+        {
+          "name": "Jared Goff",
+          "fieldwork": 15.9,
+          "subvertadown": 17.2
+        },
+        {
+          "name": "Joe Burrow",
+          "fieldwork": 17.43,
+          "subvertadown": 16.9
+        },
+        {
+          "name": "Bo Nix",
+          "fieldwork": 15.68,
+          "subvertadown": 16.6
+        },
+        {
+          "name": "Jordan Love",
+          "fieldwork": 18.21,
+          "subvertadown": 16.0
+        },
+        {
+          "name": "Trevor Lawrence",
+          "fieldwork": 19.23,
+          "subvertadown": 15.1
+        },
+        {
+          "name": "Drew Lock",
+          "fieldwork": 12.5,
+          "subvertadown": 14.7
+        },
+        {
+          "name": "Daniel Jones",
+          "fieldwork": 14.38,
+          "subvertadown": 14.2
+        },
+        {
+          "name": "Tyler Shough",
+          "fieldwork": 17.23,
+          "subvertadown": 14.1
+        },
+        {
+          "name": "Jacoby Brissett",
+          "fieldwork": 15.88,
+          "subvertadown": 13.9
+        },
+        {
+          "name": "Geno Smith",
+          "fieldwork": 15.34,
+          "subvertadown": 13.9
+        },
+        {
+          "name": "Cooper Rush",
+          "fieldwork": 11.25,
+          "subvertadown": 13.6
+        },
+        {
+          "name": "Malik Willis",
+          "fieldwork": 14.19,
+          "subvertadown": 13.0
+        },
+        {
+          "name": "Kirk Cousins",
+          "fieldwork": 13.62,
+          "subvertadown": 12.8
+        },
+        {
+          "name": "Deshaun Watson",
+          "fieldwork": 13.36,
+          "subvertadown": 12.6
+        },
+        {
+          "name": "Aaron Rodgers",
+          "fieldwork": 15.95,
+          "subvertadown": 12.3
+        },
+        {
+          "name": "Cam Ward",
+          "fieldwork": 15.63,
+          "subvertadown": 12.2
+        }
+      ]
+    },
+    "K": {
+      "n": 31,
+      "rank_correlation": 0.5498194670049049,
+      "mean_absolute_difference": 0.9912903225806454,
+      "rows": [
+        {
+          "name": "Evan McPherson",
+          "fieldwork": 8.67,
+          "subvertadown": 9.8
+        },
+        {
+          "name": "Eddy Pineiro",
+          "fieldwork": 9.71,
+          "subvertadown": 9.7
+        },
+        {
+          "name": "Brandon Aubrey",
+          "fieldwork": 8.92,
+          "subvertadown": 9.7
+        },
+        {
+          "name": "Andres Borregales",
+          "fieldwork": 8.99,
+          "subvertadown": 9.4
+        },
+        {
+          "name": "Cameron Dicker",
+          "fieldwork": 7.51,
+          "subvertadown": 9.4
+        },
+        {
+          "name": "Harrison Butker",
+          "fieldwork": 9.09,
+          "subvertadown": 9.4
+        },
+        {
+          "name": "Ka'imi Fairbairn",
+          "fieldwork": 8.34,
+          "subvertadown": 9.3
+        },
+        {
+          "name": "Jake Elliott",
+          "fieldwork": 9.67,
+          "subvertadown": 9.2
+        },
+        {
+          "name": "Cam Little",
+          "fieldwork": 10.47,
+          "subvertadown": 9.2
+        },
+        {
+          "name": "Cairo Santos",
+          "fieldwork": 7.8,
+          "subvertadown": 9.2
+        },
+        {
+          "name": "Tyler Loop",
+          "fieldwork": 8.3,
+          "subvertadown": 9.2
+        },
+        {
+          "name": "Chase McLaughlin",
+          "fieldwork": 7.71,
+          "subvertadown": 9.1
+        },
+        {
+          "name": "Ryan Fitzgerald",
+          "fieldwork": 6.09,
+          "subvertadown": 9.1
+        },
+        {
+          "name": "Chad Ryland",
+          "fieldwork": 8.51,
+          "subvertadown": 9.0
+        },
+        {
+          "name": "Trey Smack",
+          "fieldwork": 9.01,
+          "subvertadown": 8.9
+        },
+        {
+          "name": "Tyler Bass",
+          "fieldwork": 7.36,
+          "subvertadown": 8.8
+        },
+        {
+          "name": "Nick Folk",
+          "fieldwork": 8.86,
+          "subvertadown": 8.8
+        },
+        {
+          "name": "Matt Gay",
+          "fieldwork": 9.88,
+          "subvertadown": 8.7
+        },
+        {
+          "name": "Jason Myers",
+          "fieldwork": 8.18,
+          "subvertadown": 8.7
+        },
+        {
+          "name": "Jake Bates",
+          "fieldwork": 7.87,
+          "subvertadown": 8.6
+        },
+        {
+          "name": "Harrison Mevis",
+          "fieldwork": 9.4,
+          "subvertadown": 8.6
+        },
+        {
+          "name": "Dominic Zvada",
+          "fieldwork": 7.49,
+          "subvertadown": 8.6
+        },
+        {
+          "name": "Wil Lutz",
+          "fieldwork": 6.16,
+          "subvertadown": 8.5
+        },
+        {
+          "name": "Joey Slye",
+          "fieldwork": 8.24,
+          "subvertadown": 8.4
+        },
+        {
+          "name": "Drew Stevens",
+          "fieldwork": 8.07,
+          "subvertadown": 8.3
+        },
+        {
+          "name": "Andre Szmyt",
+          "fieldwork": 7.56,
+          "subvertadown": 8.3
+        },
+        {
+          "name": "Spencer Shrader",
+          "fieldwork": 5.02,
+          "subvertadown": 8.2
+        },
+        {
+          "name": "Chris Boswell",
+          "fieldwork": 7.16,
+          "subvertadown": 8.1
+        },
+        {
+          "name": "Will Reichard",
+          "fieldwork": 7.4,
+          "subvertadown": 8.0
+        },
+        {
+          "name": "Daniel Carlson",
+          "fieldwork": 6.09,
+          "subvertadown": 7.1
+        },
+        {
+          "name": "Riley Patterson",
+          "fieldwork": 7.86,
+          "subvertadown": 6.7
+        }
+      ]
+    },
+    "DST": {
+      "n": 32,
+      "rank_correlation": 0.6335626525657571,
+      "mean_absolute_difference": 1.181875,
+      "rows": [
+        {
+          "name": "TB",
+          "fieldwork": 7.79,
+          "subvertadown": 9.6
+        },
+        {
+          "name": "SF",
+          "fieldwork": 8.05,
+          "subvertadown": 9.1
+        },
+        {
+          "name": "PHI",
+          "fieldwork": 7.15,
+          "subvertadown": 8.2
+        },
+        {
+          "name": "GB",
+          "fieldwork": 5.02,
+          "subvertadown": 7.9
+        },
+        {
+          "name": "SEA",
+          "fieldwork": 6.94,
+          "subvertadown": 7.5
+        },
+        {
+          "name": "KC",
+          "fieldwork": 7.17,
+          "subvertadown": 7.2
+        },
+        {
+          "name": "CHI",
+          "fieldwork": 6.13,
+          "subvertadown": 7.1
+        },
+        {
+          "name": "BAL",
+          "fieldwork": 6.97,
+          "subvertadown": 7.0
+        },
+        {
+          "name": "LAC",
+          "fieldwork": 7.22,
+          "subvertadown": 7.0
+        },
+        {
+          "name": "NE",
+          "fieldwork": 7.34,
+          "subvertadown": 6.9
+        },
+        {
+          "name": "LAR",
+          "fieldwork": 5.3,
+          "subvertadown": 6.7
+        },
+        {
+          "name": "DEN",
+          "fieldwork": 4.8,
+          "subvertadown": 6.0
+        },
+        {
+          "name": "CAR",
+          "fieldwork": 5.18,
+          "subvertadown": 5.9
+        },
+        {
+          "name": "ARI",
+          "fieldwork": 5.67,
+          "subvertadown": 5.5
+        },
+        {
+          "name": "PIT",
+          "fieldwork": 6.4,
+          "subvertadown": 5.5
+        },
+        {
+          "name": "TEN",
+          "fieldwork": 5.26,
+          "subvertadown": 5.2
+        },
+        {
+          "name": "JAX",
+          "fieldwork": 7.97,
+          "subvertadown": 5.0
+        },
+        {
+          "name": "DAL",
+          "fieldwork": 4.96,
+          "subvertadown": 4.9
+        },
+        {
+          "name": "HOU",
+          "fieldwork": 5.09,
+          "subvertadown": 4.9
+        },
+        {
+          "name": "LV",
+          "fieldwork": 7.45,
+          "subvertadown": 4.5
+        },
+        {
+          "name": "BUF",
+          "fieldwork": 5.04,
+          "subvertadown": 4.5
+        },
+        {
+          "name": "CIN",
+          "fieldwork": 4.65,
+          "subvertadown": 4.4
+        },
+        {
+          "name": "CLE",
+          "fieldwork": 6.07,
+          "subvertadown": 4.2
+        },
+        {
+          "name": "NO",
+          "fieldwork": 3.72,
+          "subvertadown": 3.9
+        },
+        {
+          "name": "NYJ",
+          "fieldwork": 6.17,
+          "subvertadown": 3.8
+        },
+        {
+          "name": "ATL",
+          "fieldwork": 5.48,
+          "subvertadown": 3.8
+        },
+        {
+          "name": "IND",
+          "fieldwork": 5.19,
+          "subvertadown": 3.2
+        },
+        {
+          "name": "MIN",
+          "fieldwork": 3.86,
+          "subvertadown": 3.2
+        },
+        {
+          "name": "NYG",
+          "fieldwork": 4.43,
+          "subvertadown": 2.6
+        },
+        {
+          "name": "MIA",
+          "fieldwork": 3.85,
+          "subvertadown": 2.3
+        },
+        {
+          "name": "WAS",
+          "fieldwork": 5.09,
+          "subvertadown": 2.0
+        },
+        {
+          "name": "DET",
+          "fieldwork": 3.95,
+          "subvertadown": 1.8
+        }
+      ]
+    }
+  },
+  "candidate": {
+    "QB": {
+      "n": 31,
+      "rank_correlation": 0.6226301434372381,
+      "mean_absolute_difference": 2.4687096774193553,
+      "rows": [
+        {
+          "name": "Josh Allen",
+          "fieldwork": 23.84,
+          "subvertadown": 24.8
+        },
+        {
+          "name": "Caleb Williams",
+          "fieldwork": 24.83,
+          "subvertadown": 20.8
+        },
+        {
+          "name": "Lamar Jackson",
+          "fieldwork": 18.81,
+          "subvertadown": 20.3
+        },
+        {
+          "name": "Brock Purdy",
+          "fieldwork": 20.11,
+          "subvertadown": 20.0
+        },
+        {
+          "name": "Dak Prescott",
+          "fieldwork": 15.18,
+          "subvertadown": 19.1
+        },
+        {
+          "name": "Jayden Daniels",
+          "fieldwork": 17.19,
+          "subvertadown": 18.9
+        },
+        {
+          "name": "Patrick Mahomes",
+          "fieldwork": 18.79,
+          "subvertadown": 18.9
+        },
+        {
+          "name": "Matthew Stafford",
+          "fieldwork": 14.79,
+          "subvertadown": 18.5
+        },
+        {
+          "name": "Jalen Hurts",
+          "fieldwork": 19.28,
+          "subvertadown": 18.5
+        },
+        {
+          "name": "Justin Herbert",
+          "fieldwork": 15.91,
+          "subvertadown": 18.4
+        },
+        {
+          "name": "Baker Mayfield",
+          "fieldwork": 13.22,
+          "subvertadown": 18.0
+        },
+        {
+          "name": "Jaxson Dart",
+          "fieldwork": 22.27,
+          "subvertadown": 18.0
+        },
+        {
+          "name": "Drake Maye",
+          "fieldwork": 17.37,
+          "subvertadown": 17.9
+        },
+        {
+          "name": "Bryce Young",
+          "fieldwork": 20.67,
+          "subvertadown": 17.8
+        },
+        {
+          "name": "C.J. Stroud",
+          "fieldwork": 16.55,
+          "subvertadown": 17.6
+        },
+        {
+          "name": "Jared Goff",
+          "fieldwork": 16.31,
+          "subvertadown": 17.2
+        },
+        {
+          "name": "Joe Burrow",
+          "fieldwork": 17.11,
+          "subvertadown": 16.9
+        },
+        {
+          "name": "Bo Nix",
+          "fieldwork": 12.87,
+          "subvertadown": 16.6
+        },
+        {
+          "name": "Jordan Love",
+          "fieldwork": 16.6,
+          "subvertadown": 16.0
+        },
+        {
+          "name": "Trevor Lawrence",
+          "fieldwork": 23.85,
+          "subvertadown": 15.1
+        },
+        {
+          "name": "Drew Lock",
+          "fieldwork": 8.93,
+          "subvertadown": 14.7
+        },
+        {
+          "name": "Daniel Jones",
+          "fieldwork": 12.3,
+          "subvertadown": 14.2
+        },
+        {
+          "name": "Tyler Shough",
+          "fieldwork": 19.5,
+          "subvertadown": 14.1
+        },
+        {
+          "name": "Jacoby Brissett",
+          "fieldwork": 16.63,
+          "subvertadown": 13.9
+        },
+        {
+          "name": "Geno Smith",
+          "fieldwork": 11.43,
+          "subvertadown": 13.9
+        },
+        {
+          "name": "Cooper Rush",
+          "fieldwork": 6.76,
+          "subvertadown": 13.6
+        },
+        {
+          "name": "Malik Willis",
+          "fieldwork": 14.12,
+          "subvertadown": 13.0
+        },
+        {
+          "name": "Kirk Cousins",
+          "fieldwork": 12.85,
+          "subvertadown": 12.8
+        },
+        {
+          "name": "Deshaun Watson",
+          "fieldwork": 12.12,
+          "subvertadown": 12.6
+        },
+        {
+          "name": "Aaron Rodgers",
+          "fieldwork": 13.86,
+          "subvertadown": 12.3
+        },
+        {
+          "name": "Cam Ward",
+          "fieldwork": 13.42,
+          "subvertadown": 12.2
+        }
+      ]
+    },
+    "K": {
+      "n": 31,
+      "rank_correlation": 0.6113596352471373,
+      "mean_absolute_difference": 0.7719354838709677,
+      "rows": [
+        {
+          "name": "Evan McPherson",
+          "fieldwork": 7.32,
+          "subvertadown": 9.8
+        },
+        {
+          "name": "Eddy Pineiro",
+          "fieldwork": 9.8,
+          "subvertadown": 9.7
+        },
+        {
+          "name": "Brandon Aubrey",
+          "fieldwork": 7.73,
+          "subvertadown": 9.7
+        },
+        {
+          "name": "Andres Borregales",
+          "fieldwork": 8.35,
+          "subvertadown": 9.4
+        },
+        {
+          "name": "Cameron Dicker",
+          "fieldwork": 9.36,
+          "subvertadown": 9.4
+        },
+        {
+          "name": "Harrison Butker",
+          "fieldwork": 9.17,
+          "subvertadown": 9.4
+        },
+        {
+          "name": "Ka'imi Fairbairn",
+          "fieldwork": 8.58,
+          "subvertadown": 9.3
+        },
+        {
+          "name": "Jake Elliott",
+          "fieldwork": 8.31,
+          "subvertadown": 9.2
+        },
+        {
+          "name": "Cam Little",
+          "fieldwork": 8.54,
+          "subvertadown": 9.2
+        },
+        {
+          "name": "Cairo Santos",
+          "fieldwork": 8.72,
+          "subvertadown": 9.2
+        },
+        {
+          "name": "Tyler Loop",
+          "fieldwork": 9.44,
+          "subvertadown": 9.2
+        },
+        {
+          "name": "Chase McLaughlin",
+          "fieldwork": 9.34,
+          "subvertadown": 9.1
+        },
+        {
+          "name": "Ryan Fitzgerald",
+          "fieldwork": 8.22,
+          "subvertadown": 9.1
+        },
+        {
+          "name": "Chad Ryland",
+          "fieldwork": 7.6,
+          "subvertadown": 9.0
+        },
+        {
+          "name": "Trey Smack",
+          "fieldwork": 8.21,
+          "subvertadown": 8.9
+        },
+        {
+          "name": "Tyler Bass",
+          "fieldwork": 8.66,
+          "subvertadown": 8.8
+        },
+        {
+          "name": "Nick Folk",
+          "fieldwork": 8.78,
+          "subvertadown": 8.8
+        },
+        {
+          "name": "Matt Gay",
+          "fieldwork": 8.11,
+          "subvertadown": 8.7
+        },
+        {
+          "name": "Jason Myers",
+          "fieldwork": 8.23,
+          "subvertadown": 8.7
+        },
+        {
+          "name": "Jake Bates",
+          "fieldwork": 7.5,
+          "subvertadown": 8.6
+        },
+        {
+          "name": "Harrison Mevis",
+          "fieldwork": 9.42,
+          "subvertadown": 8.6
+        },
+        {
+          "name": "Dominic Zvada",
+          "fieldwork": 7.5,
+          "subvertadown": 8.6
+        },
+        {
+          "name": "Wil Lutz",
+          "fieldwork": 7.54,
+          "subvertadown": 8.5
+        },
+        {
+          "name": "Joey Slye",
+          "fieldwork": 7.96,
+          "subvertadown": 8.4
+        },
+        {
+          "name": "Drew Stevens",
+          "fieldwork": 7.81,
+          "subvertadown": 8.3
+        },
+        {
+          "name": "Andre Szmyt",
+          "fieldwork": 6.83,
+          "subvertadown": 8.3
+        },
+        {
+          "name": "Spencer Shrader",
+          "fieldwork": 5.83,
+          "subvertadown": 8.2
+        },
+        {
+          "name": "Chris Boswell",
+          "fieldwork": 7.63,
+          "subvertadown": 8.1
+        },
+        {
+          "name": "Will Reichard",
+          "fieldwork": 7.36,
+          "subvertadown": 8.0
+        },
+        {
+          "name": "Daniel Carlson",
+          "fieldwork": 6.66,
+          "subvertadown": 7.1
+        },
+        {
+          "name": "Riley Patterson",
+          "fieldwork": 6.36,
+          "subvertadown": 6.7
+        }
+      ]
+    },
+    "DST": {
+      "n": 32,
+      "rank_correlation": 0.8998717664780244,
+      "mean_absolute_difference": 0.8349999999999999,
+      "rows": [
+        {
+          "name": "TB",
+          "fieldwork": 9.1,
+          "subvertadown": 9.6
+        },
+        {
+          "name": "SF",
+          "fieldwork": 9.0,
+          "subvertadown": 9.1
+        },
+        {
+          "name": "PHI",
+          "fieldwork": 7.57,
+          "subvertadown": 8.2
+        },
+        {
+          "name": "GB",
+          "fieldwork": 6.3,
+          "subvertadown": 7.9
+        },
+        {
+          "name": "SEA",
+          "fieldwork": 7.61,
+          "subvertadown": 7.5
+        },
+        {
+          "name": "KC",
+          "fieldwork": 7.5,
+          "subvertadown": 7.2
+        },
+        {
+          "name": "CHI",
+          "fieldwork": 6.73,
+          "subvertadown": 7.1
+        },
+        {
+          "name": "BAL",
+          "fieldwork": 7.55,
+          "subvertadown": 7.0
+        },
+        {
+          "name": "LAC",
+          "fieldwork": 8.09,
+          "subvertadown": 7.0
+        },
+        {
+          "name": "NE",
+          "fieldwork": 7.07,
+          "subvertadown": 6.9
+        },
+        {
+          "name": "LAR",
+          "fieldwork": 7.16,
+          "subvertadown": 6.7
+        },
+        {
+          "name": "DEN",
+          "fieldwork": 5.78,
+          "subvertadown": 6.0
+        },
+        {
+          "name": "CAR",
+          "fieldwork": 5.83,
+          "subvertadown": 5.9
+        },
+        {
+          "name": "ARI",
+          "fieldwork": 4.96,
+          "subvertadown": 5.5
+        },
+        {
+          "name": "PIT",
+          "fieldwork": 5.12,
+          "subvertadown": 5.5
+        },
+        {
+          "name": "TEN",
+          "fieldwork": 4.6,
+          "subvertadown": 5.2
+        },
+        {
+          "name": "JAX",
+          "fieldwork": 5.75,
+          "subvertadown": 5.0
+        },
+        {
+          "name": "DAL",
+          "fieldwork": 5.67,
+          "subvertadown": 4.9
+        },
+        {
+          "name": "HOU",
+          "fieldwork": 6.05,
+          "subvertadown": 4.9
+        },
+        {
+          "name": "LV",
+          "fieldwork": 6.13,
+          "subvertadown": 4.5
+        },
+        {
+          "name": "BUF",
+          "fieldwork": 5.76,
+          "subvertadown": 4.5
+        },
+        {
+          "name": "CIN",
+          "fieldwork": 4.95,
+          "subvertadown": 4.4
+        },
+        {
+          "name": "CLE",
+          "fieldwork": 4.71,
+          "subvertadown": 4.2
+        },
+        {
+          "name": "NO",
+          "fieldwork": 3.72,
+          "subvertadown": 3.9
+        },
+        {
+          "name": "NYJ",
+          "fieldwork": 5.59,
+          "subvertadown": 3.8
+        },
+        {
+          "name": "ATL",
+          "fieldwork": 5.55,
+          "subvertadown": 3.8
+        },
+        {
+          "name": "IND",
+          "fieldwork": 4.46,
+          "subvertadown": 3.2
+        },
+        {
+          "name": "MIN",
+          "fieldwork": 4.39,
+          "subvertadown": 3.2
+        },
+        {
+          "name": "NYG",
+          "fieldwork": 4.34,
+          "subvertadown": 2.6
+        },
+        {
+          "name": "MIA",
+          "fieldwork": 2.9,
+          "subvertadown": 2.3
+        },
+        {
+          "name": "WAS",
+          "fieldwork": 4.21,
+          "subvertadown": 2.0
+        },
+        {
+          "name": "DET",
+          "fieldwork": 3.49,
+          "subvertadown": 1.8
+        }
+      ]
+    },
+    "RB": {
+      "n": 32,
+      "rank_correlation": 0.7769322747360418,
+      "mean_absolute_difference": 1.66125,
+      "bonus_rank_correlation": 0.5535162937021587,
+      "rows": [
+        {
+          "team": "KC",
+          "fieldwork": 25.01,
+          "subvertadown": 26.5,
+          "fieldwork_bonus": 1.41,
+          "subvertadown_bonus": 1.9
+        },
+        {
+          "team": "SF",
+          "fieldwork": 26.75,
+          "subvertadown": 27.299999999999997,
+          "fieldwork_bonus": 1.37,
+          "subvertadown_bonus": 1.9
+        },
+        {
+          "team": "PHI",
+          "fieldwork": 19.93,
+          "subvertadown": 21.3,
+          "fieldwork_bonus": 0.99,
+          "subvertadown_bonus": 1.6
+        },
+        {
+          "team": "BAL",
+          "fieldwork": 28.31,
+          "subvertadown": 25.7,
+          "fieldwork_bonus": -0.3,
+          "subvertadown_bonus": 1.3
+        },
+        {
+          "team": "BUF",
+          "fieldwork": 24.6,
+          "subvertadown": 24.3,
+          "fieldwork_bonus": -0.09,
+          "subvertadown_bonus": 1.1
+        },
+        {
+          "team": "WAS",
+          "fieldwork": 21.92,
+          "subvertadown": 22,
+          "fieldwork_bonus": 1.35,
+          "subvertadown_bonus": 1
+        },
+        {
+          "team": "ATL",
+          "fieldwork": 28.66,
+          "subvertadown": 26,
+          "fieldwork_bonus": 2.4,
+          "subvertadown_bonus": 1
+        },
+        {
+          "team": "LAR",
+          "fieldwork": 24.39,
+          "subvertadown": 26.2,
+          "fieldwork_bonus": 0.3,
+          "subvertadown_bonus": 0.9
+        },
+        {
+          "team": "DEN",
+          "fieldwork": 18.35,
+          "subvertadown": 21.9,
+          "fieldwork_bonus": -1.63,
+          "subvertadown_bonus": 0.5
+        },
+        {
+          "team": "DAL",
+          "fieldwork": 23.8,
+          "subvertadown": 24.1,
+          "fieldwork_bonus": 0.55,
+          "subvertadown_bonus": 0.3
+        },
+        {
+          "team": "MIN",
+          "fieldwork": 21.42,
+          "subvertadown": 22.4,
+          "fieldwork_bonus": 0.81,
+          "subvertadown_bonus": 0.2
+        },
+        {
+          "team": "DET",
+          "fieldwork": 25.83,
+          "subvertadown": 26.5,
+          "fieldwork_bonus": 0.01,
+          "subvertadown_bonus": 0.2
+        },
+        {
+          "team": "TB",
+          "fieldwork": 21.93,
+          "subvertadown": 22.5,
+          "fieldwork_bonus": 0.23,
+          "subvertadown_bonus": 0.1
+        },
+        {
+          "team": "NYJ",
+          "fieldwork": 21.27,
+          "subvertadown": 22.8,
+          "fieldwork_bonus": 0.36,
+          "subvertadown_bonus": 0.1
+        },
+        {
+          "team": "LAC",
+          "fieldwork": 16.91,
+          "subvertadown": 20.1,
+          "fieldwork_bonus": -0.59,
+          "subvertadown_bonus": 0
+        },
+        {
+          "team": "LV",
+          "fieldwork": 21.77,
+          "subvertadown": 23.8,
+          "fieldwork_bonus": -0.35,
+          "subvertadown_bonus": 0
+        },
+        {
+          "team": "CAR",
+          "fieldwork": 21.77,
+          "subvertadown": 22.6,
+          "fieldwork_bonus": -0.69,
+          "subvertadown_bonus": -0.2
+        },
+        {
+          "team": "HOU",
+          "fieldwork": 23.54,
+          "subvertadown": 23.0,
+          "fieldwork_bonus": 0.56,
+          "subvertadown_bonus": -0.3
+        },
+        {
+          "team": "TEN",
+          "fieldwork": 17.84,
+          "subvertadown": 19.5,
+          "fieldwork_bonus": -0.52,
+          "subvertadown_bonus": -0.5
+        },
+        {
+          "team": "NE",
+          "fieldwork": 24.97,
+          "subvertadown": 21.0,
+          "fieldwork_bonus": -0.66,
+          "subvertadown_bonus": -0.5
+        },
+        {
+          "team": "GB",
+          "fieldwork": 17.59,
+          "subvertadown": 20.3,
+          "fieldwork_bonus": 0.94,
+          "subvertadown_bonus": -0.7
+        },
+        {
+          "team": "NO",
+          "fieldwork": 19.24,
+          "subvertadown": 19.099999999999998,
+          "fieldwork_bonus": -0.3,
+          "subvertadown_bonus": -0.8
+        },
+        {
+          "team": "CLE",
+          "fieldwork": 17.34,
+          "subvertadown": 18.299999999999997,
+          "fieldwork_bonus": 0.31,
+          "subvertadown_bonus": -1.1
+        },
+        {
+          "team": "MIA",
+          "fieldwork": 19.54,
+          "subvertadown": 18.599999999999998,
+          "fieldwork_bonus": -0.02,
+          "subvertadown_bonus": -1.1
+        },
+        {
+          "team": "JAX",
+          "fieldwork": 20.63,
+          "subvertadown": 22.7,
+          "fieldwork_bonus": -0.36,
+          "subvertadown_bonus": -1.1
+        },
+        {
+          "team": "CHI",
+          "fieldwork": 27.85,
+          "subvertadown": 24.0,
+          "fieldwork_bonus": -1.77,
+          "subvertadown_bonus": -1.1
+        },
+        {
+          "team": "ARI",
+          "fieldwork": 17.99,
+          "subvertadown": 20.8,
+          "fieldwork_bonus": -1.87,
+          "subvertadown_bonus": -1.4
+        },
+        {
+          "team": "PIT",
+          "fieldwork": 22.15,
+          "subvertadown": 21.9,
+          "fieldwork_bonus": -1.0,
+          "subvertadown_bonus": -1.5
+        },
+        {
+          "team": "SEA",
+          "fieldwork": 23.21,
+          "subvertadown": 21.3,
+          "fieldwork_bonus": 0.54,
+          "subvertadown_bonus": -2
+        },
+        {
+          "team": "NYG",
+          "fieldwork": 23.66,
+          "subvertadown": 20.799999999999997,
+          "fieldwork_bonus": 0.16,
+          "subvertadown_bonus": -2.1
+        },
+        {
+          "team": "CIN",
+          "fieldwork": 24.48,
+          "subvertadown": 22.0,
+          "fieldwork_bonus": -0.7,
+          "subvertadown_bonus": -2.1
+        },
+        {
+          "team": "IND",
+          "fieldwork": 20.21,
+          "subvertadown": 21.7,
+          "fieldwork_bonus": -1.42,
+          "subvertadown_bonus": -2.3
+        }
+      ]
+    },
+    "WR": {
+      "n": 32,
+      "rank_correlation": 0.7071762471273554,
+      "mean_absolute_difference": 5.2128125,
+      "bonus_rank_correlation": 0.10508443642516764,
+      "rows": [
+        {
+          "team": "BUF",
+          "fieldwork": 31.39,
+          "subvertadown": 37.8,
+          "fieldwork_bonus": 0.22,
+          "subvertadown_bonus": 4.0
+        },
+        {
+          "team": "DAL",
+          "fieldwork": 34.97,
+          "subvertadown": 44.0,
+          "fieldwork_bonus": -0.01,
+          "subvertadown_bonus": 3.3
+        },
+        {
+          "team": "CAR",
+          "fieldwork": 33.69,
+          "subvertadown": 37.2,
+          "fieldwork_bonus": 0.06,
+          "subvertadown_bonus": 2.7
+        },
+        {
+          "team": "LAC",
+          "fieldwork": 29.51,
+          "subvertadown": 42.5,
+          "fieldwork_bonus": -0.23,
+          "subvertadown_bonus": 2.3
+        },
+        {
+          "team": "WAS",
+          "fieldwork": 29.33,
+          "subvertadown": 33.8,
+          "fieldwork_bonus": -0.05,
+          "subvertadown_bonus": 1.8
+        },
+        {
+          "team": "DEN",
+          "fieldwork": 25.77,
+          "subvertadown": 33.5,
+          "fieldwork_bonus": -0.05,
+          "subvertadown_bonus": 1.5
+        },
+        {
+          "team": "ATL",
+          "fieldwork": 17.25,
+          "subvertadown": 29.3,
+          "fieldwork_bonus": -0.08,
+          "subvertadown_bonus": 0.7
+        },
+        {
+          "team": "LV",
+          "fieldwork": 20.98,
+          "subvertadown": 32.2,
+          "fieldwork_bonus": -0.2,
+          "subvertadown_bonus": 0.7
+        },
+        {
+          "team": "HOU",
+          "fieldwork": 36.12,
+          "subvertadown": 34.199999999999996,
+          "fieldwork_bonus": 0.12,
+          "subvertadown_bonus": 0.4
+        },
+        {
+          "team": "KC",
+          "fieldwork": 21.03,
+          "subvertadown": 30.9,
+          "fieldwork_bonus": 0.01,
+          "subvertadown_bonus": 0
+        },
+        {
+          "team": "DET",
+          "fieldwork": 40.22,
+          "subvertadown": 41.1,
+          "fieldwork_bonus": -0.28,
+          "subvertadown_bonus": -0.1
+        },
+        {
+          "team": "GB",
+          "fieldwork": 39.88,
+          "subvertadown": 37.9,
+          "fieldwork_bonus": -0.05,
+          "subvertadown_bonus": -0.1
+        },
+        {
+          "team": "SF",
+          "fieldwork": 35.26,
+          "subvertadown": 34.900000000000006,
+          "fieldwork_bonus": -0.23,
+          "subvertadown_bonus": -0.3
+        },
+        {
+          "team": "PHI",
+          "fieldwork": 27.88,
+          "subvertadown": 35.2,
+          "fieldwork_bonus": -0.29,
+          "subvertadown_bonus": -0.5
+        },
+        {
+          "team": "CHI",
+          "fieldwork": 34.05,
+          "subvertadown": 36.0,
+          "fieldwork_bonus": -0.42,
+          "subvertadown_bonus": -0.5
+        },
+        {
+          "team": "TEN",
+          "fieldwork": 24.71,
+          "subvertadown": 32.5,
+          "fieldwork_bonus": -0.11,
+          "subvertadown_bonus": -0.6
+        },
+        {
+          "team": "CIN",
+          "fieldwork": 30.84,
+          "subvertadown": 35.4,
+          "fieldwork_bonus": -0.0,
+          "subvertadown_bonus": -0.6
+        },
+        {
+          "team": "ARI",
+          "fieldwork": 28.81,
+          "subvertadown": 28.3,
+          "fieldwork_bonus": -0.1,
+          "subvertadown_bonus": -0.7
+        },
+        {
+          "team": "MIA",
+          "fieldwork": 23.17,
+          "subvertadown": 30.0,
+          "fieldwork_bonus": 0.19,
+          "subvertadown_bonus": -0.8
+        },
+        {
+          "team": "MIN",
+          "fieldwork": 27.43,
+          "subvertadown": 32.300000000000004,
+          "fieldwork_bonus": 0.21,
+          "subvertadown_bonus": -0.8
+        },
+        {
+          "team": "LAR",
+          "fieldwork": 31.85,
+          "subvertadown": 37.400000000000006,
+          "fieldwork_bonus": -0.18,
+          "subvertadown_bonus": -0.8
+        },
+        {
+          "team": "BAL",
+          "fieldwork": 30.58,
+          "subvertadown": 31.9,
+          "fieldwork_bonus": 0.14,
+          "subvertadown_bonus": -0.9
+        },
+        {
+          "team": "NYJ",
+          "fieldwork": 25.09,
+          "subvertadown": 28.3,
+          "fieldwork_bonus": -0.39,
+          "subvertadown_bonus": -1.4
+        },
+        {
+          "team": "SEA",
+          "fieldwork": 31.7,
+          "subvertadown": 38.3,
+          "fieldwork_bonus": 0.05,
+          "subvertadown_bonus": -1.5
+        },
+        {
+          "team": "NO",
+          "fieldwork": 42.11,
+          "subvertadown": 33.0,
+          "fieldwork_bonus": -0.13,
+          "subvertadown_bonus": -2.1
+        },
+        {
+          "team": "PIT",
+          "fieldwork": 24.2,
+          "subvertadown": 31.2,
+          "fieldwork_bonus": -0.24,
+          "subvertadown_bonus": -2.7
+        },
+        {
+          "team": "IND",
+          "fieldwork": 28.23,
+          "subvertadown": 32.6,
+          "fieldwork_bonus": -0.14,
+          "subvertadown_bonus": -3.1
+        },
+        {
+          "team": "TB",
+          "fieldwork": 29.31,
+          "subvertadown": 33.9,
+          "fieldwork_bonus": -0.57,
+          "subvertadown_bonus": -3.1
+        },
+        {
+          "team": "CLE",
+          "fieldwork": 21.83,
+          "subvertadown": 23.599999999999998,
+          "fieldwork_bonus": -0.02,
+          "subvertadown_bonus": -3.6
+        },
+        {
+          "team": "NE",
+          "fieldwork": 29.53,
+          "subvertadown": 29.900000000000002,
+          "fieldwork_bonus": 0.14,
+          "subvertadown_bonus": -4.2
+        },
+        {
+          "team": "JAX",
+          "fieldwork": 40.64,
+          "subvertadown": 34.2,
+          "fieldwork_bonus": -0.03,
+          "subvertadown_bonus": -4.3
+        },
+        {
+          "team": "NYG",
+          "fieldwork": 25.73,
+          "subvertadown": 25.5,
+          "fieldwork_bonus": -0.08,
+          "subvertadown_bonus": -5.2
+        }
+      ]
+    }
+  }
+}

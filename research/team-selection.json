@@ -1,0 +1,14 @@
+{
+  "RB": {
+    "alpha": 300,
+    "weight": 0.75
+  },
+  "WR": {
+    "alpha": 300,
+    "weight": 0.25
+  },
+  "TE": {
+    "alpha": 300,
+    "weight": 0.5
+  }
+}

@@ -1,0 +1,719 @@
+{
+  "season": 2026,
+  "week": 2,
+  "sources": [
+    "user image-7.png: QB/K/DST",
+    "user image-9.png: WR PPR team totals",
+    "user image-10.png: RB PPR team totals"
+  ],
+  "excluded": "Combined QB Wentz/Murray and K Grupe/Sanders omitted; ambiguous individual comparison.",
+  "use": "Comparison only, never training or model selection. Different scoring/baseline definitions remain.",
+  "values": {
+    "DST": [
+      [
+        "TB",
+        9.6
+      ],
+      [
+        "SF",
+        9.1
+      ],
+      [
+        "PHI",
+        8.2
+      ],
+      [
+        "GB",
+        7.9
+      ],
+      [
+        "SEA",
+        7.5
+      ],
+      [
+        "KC",
+        7.2
+      ],
+      [
+        "CHI",
+        7.1
+      ],
+      [
+        "BAL",
+        7.0
+      ],
+      [
+        "LAC",
+        7.0
+      ],
+      [
+        "NE",
+        6.9
+      ],
+      [
+        "LAR",
+        6.7
+      ],
+      [
+        "DEN",
+        6.0
+      ],
+      [
+        "CAR",
+        5.9
+      ],
+      [
+        "ARI",
+        5.5
+      ],
+      [
+        "PIT",
+        5.5
+      ],
+      [
+        "TEN",
+        5.2
+      ],
+      [
+        "JAX",
+        5.0
+      ],
+      [
+        "DAL",
+        4.9
+      ],
+      [
+        "HOU",
+        4.9
+      ],
+      [
+        "LV",
+        4.5
+      ],
+      [
+        "BUF",
+        4.5
+      ],
+      [
+        "CIN",
+        4.4
+      ],
+      [
+        "CLE",
+        4.2
+      ],
+      [
+        "NO",
+        3.9
+      ],
+      [
+        "NYJ",
+        3.8
+      ],
+      [
+        "ATL",
+        3.8
+      ],
+      [
+        "IND",
+        3.2
+      ],
+      [
+        "MIN",
+        3.2
+      ],
+      [
+        "NYG",
+        2.6
+      ],
+      [
+        "MIA",
+        2.3
+      ],
+      [
+        "WAS",
+        2.0
+      ],
+      [
+        "DET",
+        1.8
+      ]
+    ],
+    "WR": [
+      [
+        "BUF",
+        33.8,
+        4.0
+      ],
+      [
+        "DAL",
+        40.7,
+        3.3
+      ],
+      [
+        "CAR",
+        34.5,
+        2.7
+      ],
+      [
+        "LAC",
+        40.2,
+        2.3
+      ],
+      [
+        "WAS",
+        32.0,
+        1.8
+      ],
+      [
+        "DEN",
+        32.0,
+        1.5
+      ],
+      [
+        "ATL",
+        28.6,
+        0.7
+      ],
+      [
+        "LV",
+        31.5,
+        0.7
+      ],
+      [
+        "HOU",
+        33.8,
+        0.4
+      ],
+      [
+        "KC",
+        30.9,
+        0
+      ],
+      [
+        "DET",
+        41.2,
+        -0.1
+      ],
+      [
+        "GB",
+        38,
+        -0.1
+      ],
+      [
+        "SF",
+        35.2,
+        -0.3
+      ],
+      [
+        "PHI",
+        35.7,
+        -0.5
+      ],
+      [
+        "CHI",
+        36.5,
+        -0.5
+      ],
+      [
+        "TEN",
+        33.1,
+        -0.6
+      ],
+      [
+        "CIN",
+        36,
+        -0.6
+      ],
+      [
+        "ARI",
+        29,
+        -0.7
+      ],
+      [
+        "MIA",
+        30.8,
+        -0.8
+      ],
+      [
+        "MIN",
+        33.1,
+        -0.8
+      ],
+      [
+        "LAR",
+        38.2,
+        -0.8
+      ],
+      [
+        "BAL",
+        32.8,
+        -0.9
+      ],
+      [
+        "NYJ",
+        29.7,
+        -1.4
+      ],
+      [
+        "SEA",
+        39.8,
+        -1.5
+      ],
+      [
+        "NO",
+        35.1,
+        -2.1
+      ],
+      [
+        "PIT",
+        33.9,
+        -2.7
+      ],
+      [
+        "IND",
+        35.7,
+        -3.1
+      ],
+      [
+        "TB",
+        37,
+        -3.1
+      ],
+      [
+        "CLE",
+        27.2,
+        -3.6
+      ],
+      [
+        "NE",
+        34.1,
+        -4.2
+      ],
+      [
+        "JAX",
+        38.5,
+        -4.3
+      ],
+      [
+        "NYG",
+        30.7,
+        -5.2
+      ]
+    ],
+    "RB": [
+      [
+        "KC",
+        24.6,
+        1.9
+      ],
+      [
+        "SF",
+        25.4,
+        1.9
+      ],
+      [
+        "PHI",
+        19.7,
+        1.6
+      ],
+      [
+        "BAL",
+        24.4,
+        1.3
+      ],
+      [
+        "BUF",
+        23.2,
+        1.1
+      ],
+      [
+        "WAS",
+        21,
+        1
+      ],
+      [
+        "ATL",
+        25,
+        1
+      ],
+      [
+        "LAR",
+        25.3,
+        0.9
+      ],
+      [
+        "DEN",
+        21.4,
+        0.5
+      ],
+      [
+        "DAL",
+        23.8,
+        0.3
+      ],
+      [
+        "MIN",
+        22.2,
+        0.2
+      ],
+      [
+        "DET",
+        26.3,
+        0.2
+      ],
+      [
+        "TB",
+        22.4,
+        0.1
+      ],
+      [
+        "NYJ",
+        22.7,
+        0.1
+      ],
+      [
+        "LAC",
+        20.1,
+        0
+      ],
+      [
+        "LV",
+        23.8,
+        0
+      ],
+      [
+        "CAR",
+        22.8,
+        -0.2
+      ],
+      [
+        "HOU",
+        23.3,
+        -0.3
+      ],
+      [
+        "TEN",
+        20,
+        -0.5
+      ],
+      [
+        "NE",
+        21.5,
+        -0.5
+      ],
+      [
+        "GB",
+        21,
+        -0.7
+      ],
+      [
+        "NO",
+        19.9,
+        -0.8
+      ],
+      [
+        "CLE",
+        19.4,
+        -1.1
+      ],
+      [
+        "MIA",
+        19.7,
+        -1.1
+      ],
+      [
+        "JAX",
+        23.8,
+        -1.1
+      ],
+      [
+        "CHI",
+        25.1,
+        -1.1
+      ],
+      [
+        "ARI",
+        22.2,
+        -1.4
+      ],
+      [
+        "PIT",
+        23.4,
+        -1.5
+      ],
+      [
+        "SEA",
+        23.3,
+        -2
+      ],
+      [
+        "NYG",
+        22.9,
+        -2.1
+      ],
+      [
+        "CIN",
+        24.1,
+        -2.1
+      ],
+      [
+        "IND",
+        24,
+        -2.3
+      ]
+    ],
+    "QB": [
+      [
+        "Josh Allen",
+        24.8
+      ],
+      [
+        "Caleb Williams",
+        20.8
+      ],
+      [
+        "Lamar Jackson",
+        20.3
+      ],
+      [
+        "Brock Purdy",
+        20.0
+      ],
+      [
+        "Dak Prescott",
+        19.1
+      ],
+      [
+        "Jayden Daniels",
+        18.9
+      ],
+      [
+        "Patrick Mahomes",
+        18.9
+      ],
+      [
+        "Matthew Stafford",
+        18.5
+      ],
+      [
+        "Jalen Hurts",
+        18.5
+      ],
+      [
+        "Justin Herbert",
+        18.4
+      ],
+      [
+        "Baker Mayfield",
+        18.0
+      ],
+      [
+        "Jaxson Dart",
+        18.0
+      ],
+      [
+        "Drake Maye",
+        17.9
+      ],
+      [
+        "Bryce Young",
+        17.8
+      ],
+      [
+        "C.J. Stroud",
+        17.6
+      ],
+      [
+        "Jared Goff",
+        17.2
+      ],
+      [
+        "Joe Burrow",
+        16.9
+      ],
+      [
+        "Bo Nix",
+        16.6
+      ],
+      [
+        "Jordan Love",
+        16.0
+      ],
+      [
+        "Trevor Lawrence",
+        15.1
+      ],
+      [
+        "Drew Lock",
+        14.7
+      ],
+      [
+        "Daniel Jones",
+        14.2
+      ],
+      [
+        "Tyler Shough",
+        14.1
+      ],
+      [
+        "Jacoby Brissett",
+        13.9
+      ],
+      [
+        "Geno Smith",
+        13.9
+      ],
+      [
+        "Cooper Rush",
+        13.6
+      ],
+      [
+        "Malik Willis",
+        13.0
+      ],
+      [
+        "Kirk Cousins",
+        12.8
+      ],
+      [
+        "Deshaun Watson",
+        12.6
+      ],
+      [
+        "Aaron Rodgers",
+        12.3
+      ],
+      [
+        "Cam Ward",
+        12.2
+      ]
+    ],
+    "K": [
+      [
+        "Evan McPherson",
+        9.8
+      ],
+      [
+        "Eddy Pineiro",
+        9.7
+      ],
+      [
+        "Brandon Aubrey",
+        9.7
+      ],
+      [
+        "Andres Borregales",
+        9.4
+      ],
+      [
+        "Cameron Dicker",
+        9.4
+      ],
+      [
+        "Harrison Butker",
+        9.4
+      ],
+      [
+        "Ka'imi Fairbairn",
+        9.3
+      ],
+      [
+        "Jake Elliott",
+        9.2
+      ],
+      [
+        "Cam Little",
+        9.2
+      ],
+      [
+        "Cairo Santos",
+        9.2
+      ],
+      [
+        "Tyler Loop",
+        9.2
+      ],
+      [
+        "Chase McLaughlin",
+        9.1
+      ],
+      [
+        "Ryan Fitzgerald",
+        9.1
+      ],
+      [
+        "Chad Ryland",
+        9.0
+      ],
+      [
+        "Trey Smack",
+        8.9
+      ],
+      [
+        "Tyler Bass",
+        8.8
+      ],
+      [
+        "Nick Folk",
+        8.8
+      ],
+      [
+        "Matt Gay",
+        8.7
+      ],
+      [
+        "Jason Myers",
+        8.7
+      ],
+      [
+        "Jake Bates",
+        8.6
+      ],
+      [
+        "Harrison Mevis",
+        8.6
+      ],
+      [
+        "Dominic Zvada",
+        8.6
+      ],
+      [
+        "Wil Lutz",
+        8.5
+      ],
+      [
+        "Joey Slye",
+        8.4
+      ],
+      [
+        "Drew Stevens",
+        8.3
+      ],
+      [
+        "Andre Szmyt",
+        8.3
+      ],
+      [
+        "Spencer Shrader",
+        8.2
+      ],
+      [
+        "Chris Boswell",
+        8.1
+      ],
+      [
+        "Will Reichard",
+        8.0
+      ],
+      [
+        "Daniel Carlson",
+        7.1
+      ],
+      [
+        "Riley Patterson",
+        6.7
+      ]
+    ]
+  }
+}

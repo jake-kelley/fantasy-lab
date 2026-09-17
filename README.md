@@ -3,7 +3,7 @@
 A free-data fantasy football research dashboard, hosted as static files on GitHub Pages.
 Python runs in GitHub Actions, on a desktop, or in a Linux container. Pages does not execute Python.
 
-**Experimental v0.2.** This is an independently implemented statistical baseline, not a clone
+**Experimental v0.3.** This is an independently implemented statistical baseline, not a clone
 of Subvertadown, MonCalFF, or Boris Chen. The dashboard shows both the fitted model and a
 rolling baseline, including where the model loses. No claim of superiority over experts.
 
@@ -76,38 +76,50 @@ Use a reverse proxy if exposing the Python static server beyond a trusted networ
 
 ## Model specification
 
-Except for the D/ST specialization below, each position has a separate multi-output Ridge regression (`alpha=100`) after feature
-standardization. Coefficients estimate scoring components; fantasy points are calculated afterward.
-All features precede the target week. All games within a week are predicted before any outcomes
-from that week enter feature history.
+v0.3 evaluates separate candidates for all nine positions. Frozen choices live in
+`research/position-selection-extended.json`; scheduled builds never tune against current outcomes.
 
-Inputs include recency-weighted scoring components and workload, the latest observation minus
-that average, team/opponent offensive and defensive statistics, prior positional matchup residuals,
-home/away, indoor roof, rest, target week, experience in the observed history, team changes, and
-time since participation. Rolling history uses at most 12 appearances and weights of 0.8 per
-appearance; previous-season observations have an additional 0.35 factor. These fixed design
-choices are **not** claimed to be optimal. No player names or IDs are fitted as features.
+- QB/RB: 25% original Ridge component estimates, 75% recency-weighted component averages.
+- WR/LB: 50% model, 50% rolling component averages. DL: 75% model, 25% rolling averages.
+- TE/K/DB: position-specific Ridge inputs and exposure-scaled event shrinkage. TE and K use
+  new team context; DB's selected model does not. Coefficients/settings differ by position.
+- D/ST: forecasts pass plays (official attempts + sacks, not charted dropbacks), plays,
+  sack/interception/recovery rates and points allowed. Rates times opportunities become event counts.
+  Touchdowns, blocked kicks and safeties use training-league priors.
+- K and D/ST use current `total_line`/`spread_line` from free nflverse schedules. Historical files
+  contain closing lines. No target-game scores, observed temperature or observed wind are inputs.
+  Missing future lines trigger the corresponding statistical model without market inputs.
 
-2024 weeks 1–4 initialize history. Weeks 5–12 fit an initial model and weeks 13–18 estimate
-joint component residuals and signed scoring errors. A model fitted on weeks 5–18 is then
-evaluated throughout 2025 with fixed coefficients, while inputs update from preceding weeks.
-Live coefficients are refitted on 2024 weeks 5–18 plus all of 2025. New seasons update inputs
-but do not change the training seasons. Earlier intermediate runs were used to correct scoring,
-identity joins, and horizon bugs; 2025 was not used to tune the original model. The D/ST revision was motivated by inspected results; its settings were selected on 2024 only, but its 2025 report is not a pristine holdout.
+New context includes prior EPA per play, QB-hit rates, per-play production, play volume and
+opponent-adjusted points scored/allowed. Context histories use up to 16 games, 0.9 recency decay,
+0.35 previous-season weight and four pseudo-games at the available historical league average.
+Player rolling histories retain the original 12 appearances, 0.8 decay and 0.35 season factor.
+QB role-similarity weighting was tested and rejected by the development criterion.
 
-The test is conditional on recorded participation: box-score rows plus ID-matched snap records
-include zero-production participants, but not a full pregame eligible roster including DNPs.
-This is **not** a prospective lineup-choice or injury forecast evaluation. Modern historical files
-also contain statistical corrections that may not have been available at original prediction time.
+Development compares chronological fits on 2024 weeks 9-12 and 2025 weeks 1-12. The published
+accuracy report now covers **2025 weeks 13-18**, not the full season used by v0.2. Point coefficients
+for that report are trained only on 2024 weeks 5-18; the hyperparameter choices use the earlier
+2025 development weeks. Empirical error ranges still come from 2024 weeks 13-18, predicted by
+an initial fit on weeks 5-12. Live coefficients refit on 2024 weeks 5-18 plus all 2025.
+All football histories update only after every feature for a week is calculated.
 
-For D/ST, points-allowed scoring bands are integrated over empirical residual scenarios, rather
-than scoring only average predicted points allowed. Outcome intervals use 2024 calibration
-scoring errors, allowing zero and negative scores. They are preliminary marginal intervals,
-not guaranteed conditional coverage. The dashboard reports actual 2025 coverage.
+This is retrospective development: earlier versions' 2025 results were inspected. It is not
+pristine external validation, and market-model evaluation is not a Tuesday-time backtest because
+historical closing quotes were not necessarily available on Tuesday. The model's superior error
+in the reported period does not establish an expert-ranking edge or statistical significance.
+Historical inputs may have upstream corrections. Evaluation conditions on recorded participation,
+including zero-production snap records, not all eligible players including DNPs.
 
-Baseline points are recency-weighted **observed fantasy scores**. This distinction matters for
-nonlinear D/ST scoring. MAE and RMSE are shown by position and week. Improvements have not
-been assessed for statistical significance; lower average error alone does not prove an edge.
+D/ST points-allowed bands are integrated over empirical component residual scenarios. Other
+scoring is linear on expected components. The 80% ranges are marginal historical error intervals,
+not guarantees or distributions conditioned on every player's workload. Measured coverage is shown.
+
+The Matchup view also includes independent RB/WR/TE **PPR team totals**, trained on summed
+position-group outcomes rather than speculative individual roster forecasts. A team-total model
+blends Ridge with rolling production; weights were selected on the same development periods.
+Its matchup bonus compares the actual opponent with training-average opponent features, holding
+team, venue and rest fixed. That neutral-opponent baseline differs from Subvertadown's definition.
+The separate team-total evaluation is displayed, including where it loses to the rolling baseline.
 
 ## Scoring and interpretation
 
@@ -119,7 +131,7 @@ Do not use these presets as a substitute for checking custom league settings.
 
 The matchup map is a descriptive six-matchup mean of **group-level points above a prior rolling
 baseline**, in PPR for offensive positions. It is not MonCalFF's percentage algorithm, a causal
-effect, or an extra adjustment to apply on top of the model. D/ST v0.2 excludes this explicit residual; the map remains descriptive context.
+effect, or an extra adjustment to apply on top of the model. The map remains descriptive context; modeled team-total bonuses appear separately.
 Tiers are presentation buckets within two points of the tier leader, not fitted Gaussian clusters
 or evidence that players are statistically equivalent.
 
@@ -130,7 +142,7 @@ roster inconsistencies, or delayed upstream updates can still require a manual c
 
 ## Free-data limitations and next research steps
 
-This release does not incorporate weather forecasts, betting lines, live routes, coverage shells,
+This release does not incorporate weather forecasts, live routes, coverage shells,
 projected personnel redistribution after injuries, opponent-adjusted EPA models, or a drive-level
 kicker simulator. Some are available free but require additional timestamp-aware modeling and
 validation; others lack dependable free live coverage. It does not implement custom Sleeper scoring
@@ -140,6 +152,8 @@ Before making the model a primary decision source: improve offensive opportunity
 evaluate eligible-player start/sit decisions, archive prospective predictions, evaluate feature
 ablations, and check calibration by workload rather than position alone. Retain the baseline
 comparison throughout; do not tune repeatedly on 2025 and keep calling it an untouched holdout.
+
+See [v0.3 results and screenshot comparison](research/MODEL-REVISION-v0.3.md) for measured improvements and remaining disagreements.
 
 ## Sources and research
 
@@ -160,13 +174,13 @@ are not used as historical pregame features. Current statuses in this release us
 Original code: MIT. Third-party inputs retain their respective upstream terms; the code license
 does not relicense data. Source URLs and hashes are included in every generated bundle.
 
-## D/ST v0.2 experiment
+## Historical D/ST v0.2 experiment (superseded by v0.3)
 
 The generic 124-column D/ST model is replaced by a 15-input Ridge model (alpha=100).
 It keeps own historical sacks, interceptions, opponent fumbles recovered and points allowed;
 eight opponent offensive statistics; home, indoor venue and rest. It excludes kicking history,
 duplicate own-team inputs, the latest-minus-average block and the explicit matchup residual.
-Other positions retain v0.1 behavior.
+At that release, other positions retained v0.1 behavior.
 
 Three fixed retention settings (0, 0.5, 1) were tested for turnovers, touchdowns, blocks and safeties.
 A retention of zero uses training-league means; one retains the fitted predictions. Settings were
@@ -192,3 +206,24 @@ The recorded selection and comparison are in `research/dst-selection.json` and
 `research/dst-evaluation.json`. Production reads the frozen selection; it does not reselect settings
 on each update. No Subvertadown values enter training or selection. This revision does not add
 weather, injury redistribution, opportunity modeling, or offseason-weighted matchup residuals.
+
+## Reproduce v0.3 research
+
+```sh
+python -m pipeline.tune_positions extended-select
+python -m pipeline.tune_positions extended-evaluate
+python -m pipeline.tune_team_outlook
+python -m pipeline.run
+python -m pipeline.compare_snapshot
+```
+
+Run the main pipeline once to populate downloads before research commands. The tuning helper caches
+its derived dataset in ignored `output/tuning-dataset.pkl`; remove that one file when changing source
+data or factor-building code. Production does not read this cache. Expert screenshots are transcribed
+in `research/subvertadown-week2-snapshot.json` for comparison ONLY, never imported by fitting/selection.
+The comparison script reports point differences and rank correlation, not forecasting accuracy.
+Combined-player screenshot entries are excluded; Andy/Andres Borregales is an explicit name alias.
+TE/IDP expert-comparison data were not supplied. No claim of matching all expert results.
+
+Field definitions: https://nflreadr.nflverse.com/articles/dictionary_team_stats.html and
+https://github.com/nflverse/nflfastR/blob/master/NEWS.md (closing-line sign convention).
