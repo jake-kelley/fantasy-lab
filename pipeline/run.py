@@ -47,10 +47,12 @@ def run(refresh=False):
     ds, feature_state = dataset(rows, team_index)
     print(f'Prepared {len(ds):,} player/team games; {join_audit}', flush=True)
 
-    # Fixed design: no 2025-based feature, alpha, or ensemble selection.
+    # D/ST settings frozen by the recorded 2024-only development experiment.
+    dst_selection = json.loads((ROOT/'research'/'dst-selection.json').read_text())
+    def estimator(): return Estimator(dst_retention=dst_selection['retention'])
     warm_train = [r for r in ds if r['season'] == 2024 and 5 <= r['week'] <= 12]
     calibration = [r for r in ds if r['season'] == 2024 and r['week'] >= 13]
-    warm_model = Estimator().fit(warm_train)
+    warm_model = estimator().fit(warm_train)
     warm_pred = warm_model.predict(calibration)
     residuals, score_errors = {}, {}
     for pos in POSITIONS:
@@ -63,7 +65,7 @@ def run(refresh=False):
 
     train = [r for r in ds if r['season'] == 2024 and r['week'] >= 5]
     test = [r for r in ds if r['season'] == 2025]
-    model = Estimator().fit(train)
+    model = estimator().fit(train)
     test_pred = model.predict(test)
     report, predictions = {}, []
     for pos in POSITIONS:
@@ -88,7 +90,7 @@ def run(refresh=False):
         print(pos, result['n'], 'MAE', result['mae'], 'baseline', result['baseline_mae'], flush=True)
 
     # Refit point models on both requested seasons. Current-season stats only update features.
-    production = Estimator().fit([r for r in ds if r['season'] in [2024, 2025] and
+    production = estimator().fit([r for r in ds if r['season'] in [2024, 2025] and
                                  (r['season'] > 2024 or r['week'] >= 5)])
     nfl_players = sources.json('sleeper-players.json', 'https://api.sleeper.app/v1/players/nfl')
     current_games = [g for g in games if int(g['season']) == season and g['game_type'] == 'REG']
@@ -162,12 +164,15 @@ def run(refresh=False):
                                   latest_snap_pct=number(recent, 'defense_pct' if p['pos'] in ['DL','LB','DB'] else 'offense_pct')))
     for p in current.values(): p['forecasts'].sort(key=lambda f: f['week'])
 
-    payload = dict(version='0.1.0', generated_at=started.isoformat(), season=season, weeks=weeks,
+    payload = dict(version='0.2.0', generated_at=started.isoformat(), season=season, weeks=weeks,
                    observations_through=max(r['date'] for r in rows), model='Position-specific ridge component model',
                    train_seasons=[2024,2025], validation_season=2025, players=list(current.values()),
                    validation=report, sources=sources.manifest, joins=join_audit,
+                   dst_revision=dst_selection,
                    limitations=[
-                       'Research model, not proven to beat expert projections. See held-out results by position.',
+                       'Research model, not proven to beat expert projections. See historical results by position.',
+                       'D/ST v0.2 uses 15 inputs and training-league averages for turnovers, TDs, blocks and safeties. It omits the explicit matchup residual.',
+                       'D/ST revision was motivated by inspected results; 2024 selected its settings, and 2025 is a retrospective comparison, not a pristine holdout.',
                        'Historical evaluation conditions on recorded participation; it does not test injury/DNP prediction.',
                        'Projections are conditional on playing. Current injury flags persist into future weeks; return dates are not modeled.',
                        '80% ranges are empirical residual estimates; use measured coverage, not an assumed guarantee.',

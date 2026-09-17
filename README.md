@@ -3,7 +3,7 @@
 A free-data fantasy football research dashboard, hosted as static files on GitHub Pages.
 Python runs in GitHub Actions, on a desktop, or in a Linux container. Pages does not execute Python.
 
-**Experimental v0.1.** This is an independently implemented statistical baseline, not a clone
+**Experimental v0.2.** This is an independently implemented statistical baseline, not a clone
 of Subvertadown, MonCalFF, or Boris Chen. The dashboard shows both the fitted model and a
 rolling baseline, including where the model loses. No claim of superiority over experts.
 
@@ -76,7 +76,7 @@ Use a reverse proxy if exposing the Python static server beyond a trusted networ
 
 ## Model specification
 
-Each position has a separate multi-output Ridge regression (`alpha=100`) after feature
+Except for the D/ST specialization below, each position has a separate multi-output Ridge regression (`alpha=100`) after feature
 standardization. Coefficients estimate scoring components; fantasy points are calculated afterward.
 All features precede the target week. All games within a week are predicted before any outcomes
 from that week enter feature history.
@@ -93,7 +93,7 @@ joint component residuals and signed scoring errors. A model fitted on weeks 5�
 evaluated throughout 2025 with fixed coefficients, while inputs update from preceding weeks.
 Live coefficients are refitted on 2024 weeks 5–18 plus all of 2025. New seasons update inputs
 but do not change the training seasons. Earlier intermediate runs were used to correct scoring,
-identity joins, and horizon bugs; 2025 has not been used to tune alpha, select features, or blend models.
+identity joins, and horizon bugs; 2025 was not used to tune the original model. The D/ST revision was motivated by inspected results; its settings were selected on 2024 only, but its 2025 report is not a pristine holdout.
 
 The test is conditional on recorded participation: box-score rows plus ID-matched snap records
 include zero-production participants, but not a full pregame eligible roster including DNPs.
@@ -119,7 +119,7 @@ Do not use these presets as a substitute for checking custom league settings.
 
 The matchup map is a descriptive six-matchup mean of **group-level points above a prior rolling
 baseline**, in PPR for offensive positions. It is not MonCalFF's percentage algorithm, a causal
-effect, or an extra adjustment to apply on top of the already matchup-aware model.
+effect, or an extra adjustment to apply on top of the model. D/ST v0.2 excludes this explicit residual; the map remains descriptive context.
 Tiers are presentation buckets within two points of the tier leader, not fitted Gaussian clusters
 or evidence that players are statistically equivalent.
 
@@ -159,3 +159,36 @@ are not used as historical pregame features. Current statuses in this release us
 
 Original code: MIT. Third-party inputs retain their respective upstream terms; the code license
 does not relicense data. Source URLs and hashes are included in every generated bundle.
+
+## D/ST v0.2 experiment
+
+The generic 124-column D/ST model is replaced by a 15-input Ridge model (alpha=100).
+It keeps own historical sacks, interceptions, opponent fumbles recovered and points allowed;
+eight opponent offensive statistics; home, indoor venue and rest. It excludes kicking history,
+duplicate own-team inputs, the latest-minus-average block and the explicit matchup residual.
+Other positions retain v0.1 behavior.
+
+Three fixed retention settings (0, 0.5, 1) were tested for turnovers, touchdowns, blocks and safeties.
+A retention of zero uses training-league means; one retains the fitted predictions. Settings were
+selected by MAE on 2024 weeks 9–12, with expanding fits ending at weeks 8 and 10. Training residuals
+were used for PA scenarios during development only. This small 112-team-game selection favored
+zero retention by only 0.0019 MAE over half retention; the precise setting is provisional.
+This is output shrinkage of counts, not a dropback/opportunity-rate model or empirical Bayes fit.
+
+After freezing that selection, the existing 2024 weeks 13–18 calibration protocol was used for
+the 2025 comparison (544 team-games): legacy MAE 4.505 / RMSE 5.824, compact MAE 4.146 / RMSE 5.352,
+rolling baseline MAE 4.561 / RMSE 5.860. Empirical 80% interval coverage changed from 79.4% to 84.4%.
+No claim of statistical significance or superiority over expert forecasts. Design was informed by
+previously inspected results, so this is retrospective evidence, not untouched external validation.
+
+Reproduce after the main pipeline downloads data:
+
+```sh
+python -m pipeline.dst_experiment select
+python -m pipeline.dst_experiment evaluate
+```
+
+The recorded selection and comparison are in `research/dst-selection.json` and
+`research/dst-evaluation.json`. Production reads the frozen selection; it does not reselect settings
+on each update. No Subvertadown values enter training or selection. This revision does not add
+weather, injury redistribution, opportunity modeling, or offseason-weighted matchup residuals.

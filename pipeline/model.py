@@ -200,9 +200,18 @@ def dataset(rows, teams):
 
 
 class Estimator:
+    def __init__(self, dst_retention=None):
+        # None preserves v0.1 for reproducible comparisons and diagnostics.
+        self.dst_retention = dst_retention
+        self.dst_model = None
+
     def fit(self, rows):
         self.models = {}
         for pos in POSITIONS:
+            if pos == 'DST' and self.dst_retention is not None:
+                from .dst_experiment import CompactDST
+                self.dst_model = CompactDST(self.dst_retention).fit(rows)
+                continue
             selected = [r for r in rows if r['pos'] == pos]
             if len(selected) < 30: continue
             indices = [KEYS.index(k) for k in targets(pos)]
@@ -218,6 +227,10 @@ class Estimator:
             if not ix: continue
             values = model.predict(np.array([rows[i]['x'] for i in ix]))
             result[np.ix_(ix, indices)] = np.maximum(values, 0)
+        if self.dst_model is not None:
+            dst = self.dst_model.predict(rows)
+            ix = [i for i, r in enumerate(rows) if r['pos'] == 'DST']
+            result[ix] = dst[ix]
         return result
 
 

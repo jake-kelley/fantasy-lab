@@ -1,0 +1,51 @@
+{
+  "selection_period": "2024 weeks 9-12; expanding fits end at weeks 8 and 10",
+  "selection_metric": "MAE; training residual scenarios used for PA bands in development only",
+  "selected": "compact_0",
+  "retention": 0.0,
+  "features": [
+    "avg:def_sacks",
+    "avg:def_interceptions",
+    "avg:fumble_recovery_opp",
+    "avg:points_allowed",
+    "opp:attempts",
+    "opp:carries",
+    "opp:passing_yards",
+    "opp:rushing_yards",
+    "opp:passing_tds",
+    "opp:rushing_tds",
+    "opp:passing_interceptions",
+    "opp:sacks_suffered",
+    "home",
+    "indoor",
+    "rest"
+  ],
+  "results": {
+    "legacy": {
+      "n": 112,
+      "mae": 4.339983107766985,
+      "rmse": 5.671908721639604
+    },
+    "compact_0": {
+      "n": 112,
+      "mae": 4.033796703391344,
+      "rmse": 5.321192750860736
+    },
+    "compact_0.5": {
+      "n": 112,
+      "mae": 4.035702631777012,
+      "rmse": 5.326284832256102
+    },
+    "compact_1": {
+      "n": 112,
+      "mae": 4.085852702756979,
+      "rmse": 5.36441454827755
+    },
+    "baseline": {
+      "n": 112,
+      "mae": 4.2895110024312855,
+      "rmse": 5.722008073958614
+    }
+  },
+  "caveat": "Design motivated by inspected 2025 results and 2026 forecast. No pristine holdout claim."
+}
