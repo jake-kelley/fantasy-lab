@@ -1,0 +1,6 @@
+.git
+.venv
+.cache
+output
+__pycache__
+site/data/*.json

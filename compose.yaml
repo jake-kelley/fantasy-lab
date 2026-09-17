@@ -1,0 +1,12 @@
+services:
+  fieldwork:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - nfl-cache:/app/.cache
+      - projection-data:/app/site/data
+    restart: unless-stopped
+volumes:
+  nfl-cache:
+  projection-data:

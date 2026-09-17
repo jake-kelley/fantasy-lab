@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.cache/
+output/
+site/data/*.json
+!site/data/.gitkeep
