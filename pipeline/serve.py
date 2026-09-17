@@ -5,6 +5,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import subprocess
 import sys
 import threading
+import shutil
 from .data import ROOT
 
 
@@ -19,6 +20,11 @@ def main():
 
     def update():
         while not stop.is_set():
+            (ROOT/'site/data').mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ROOT/'research/consensus-history.json', ROOT/'site/data/historical-accuracy.json')
+            consensus = subprocess.run([sys.executable, '-m', 'pipeline.consensus'], cwd=ROOT)
+            if consensus.returncode:
+                print('Consensus refresh failed; retaining the previous board.', flush=True)
             result = subprocess.run([sys.executable, '-m', 'pipeline.run'], cwd=ROOT)
             if result.returncode:
                 print('Refresh failed; retaining the previous projection bundle.', flush=True)

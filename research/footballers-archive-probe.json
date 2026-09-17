@@ -1,0 +1,26 @@
+[
+  {
+    "requested_year": 2024,
+    "url": "https://www.thefantasyfootballers.com/2024-running-back-rankings/",
+    "resolved_url": "https://www.thefantasyfootballers.com/2026-running-back-rankings/",
+    "status": 200,
+    "embedded_season_weeks": [
+      [
+        "2026",
+        "2"
+      ]
+    ]
+  },
+  {
+    "requested_year": 2025,
+    "url": "https://www.thefantasyfootballers.com/2025-running-back-rankings/",
+    "resolved_url": "https://www.thefantasyfootballers.com/2026-running-back-rankings/",
+    "status": 200,
+    "embedded_season_weeks": [
+      [
+        "2026",
+        "2"
+      ]
+    ]
+  }
+]

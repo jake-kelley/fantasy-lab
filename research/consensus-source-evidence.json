@@ -1,0 +1,69 @@
+{
+  "metadata_url": "https://www.fantasypros.com/nfl/rankings/ppr-rb.php",
+  "observed_at": "2026-09-17T04:11:58.520140+00:00",
+  "experts": [
+    {
+      "name": "Dalton Del Don",
+      "id": "285",
+      "public_rankings_link": "https://www.fantasypros.com/nfl/rankings/dalton-del-don.php?type=weekly&scoring=PPR&position=RB",
+      "rank_2025": "6",
+      "last_updated_epoch": 1789614157,
+      "feed_published": "2026-09-16 20:02:37",
+      "epoch_in_pacific": "2026-09-16T20:02:37-07:00"
+    },
+    {
+      "name": "Kevin Hanson",
+      "id": "95",
+      "public_rankings_link": "",
+      "rank_2025": "7",
+      "last_updated_epoch": 1789609069,
+      "feed_published": "2026-09-16 18:37:49",
+      "epoch_in_pacific": "2026-09-16T18:37:49-07:00"
+    },
+    {
+      "name": "Kev Wheeler",
+      "id": "835",
+      "public_rankings_link": "https://www.fantasypros.com/nfl/rankings/kevin-wheeler.php?type=weekly&scoring=PPR&position=RB",
+      "rank_2025": "20",
+      "last_updated_epoch": 1789599947,
+      "feed_published": "2026-09-16 16:05:47",
+      "epoch_in_pacific": "2026-09-16T16:05:47-07:00"
+    },
+    {
+      "name": "James Emrick-Wilson",
+      "id": "2340",
+      "public_rankings_link": "https://www.fantasypros.com/nfl/rankings/james-emrick-wilson.php?type=weekly&scoring=PPR&position=RB",
+      "rank_2025": "24",
+      "last_updated_epoch": 1789487704,
+      "feed_published": "2026-09-15 08:55:04",
+      "epoch_in_pacific": "2026-09-15T08:55:04-07:00"
+    },
+    {
+      "name": "Elisha Twerski",
+      "id": "1169",
+      "public_rankings_link": "https://www.fantasypros.com/nfl/rankings/elisha-twerski.php?type=weekly&scoring=PPR&position=RB",
+      "rank_2025": "30",
+      "last_updated_epoch": 1789571836,
+      "feed_published": "2026-09-16 08:17:16",
+      "epoch_in_pacific": "2026-09-16T08:17:16-07:00"
+    },
+    {
+      "name": "Pat Fitzmaurice",
+      "id": "22",
+      "public_rankings_link": "https://www.fantasypros.com/nfl/rankings/pat-fitzmaurice.php?type=weekly&scoring=PPR&position=RB",
+      "rank_2025": "31",
+      "last_updated_epoch": 1789592274,
+      "feed_published": "2026-09-16 13:57:54",
+      "epoch_in_pacific": "2026-09-16T13:57:54-07:00"
+    },
+    {
+      "name": "Frank Ammirante",
+      "id": "2791",
+      "public_rankings_link": "https://www.fantasypros.com/nfl/rankings/frank-ammirante.php?type=weekly&scoring=PPR&position=RB",
+      "rank_2025": "35",
+      "last_updated_epoch": 1789434455,
+      "feed_published": "2026-09-14 18:07:35",
+      "epoch_in_pacific": "2026-09-14T18:07:35-07:00"
+    }
+  ]
+}

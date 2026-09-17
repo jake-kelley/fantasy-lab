@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict');
+const {aggregate}=require('../site/consensus.js');
+const votes=a=>a.map((rank,i)=>({source:String(i),rank}));
+assert.deepEqual(aggregate(votes([10,10,10,10,10,90])).excluded,[]);
+assert.deepEqual(aggregate(votes([10,10,10,10,10,10,90])).excluded,['6']);
+assert.equal(aggregate(votes([10,10,10,10,10,10,90])).mean,10);
+assert.deepEqual(aggregate(votes([1,20,20,20,20,20,20])).excluded,['0']);
+assert.equal(aggregate(votes([1,20,20,20,20,20,90])).excluded.length,1);
+assert.deepEqual(aggregate(votes([1,3,5,7,9,11,13])).excluded,[]);
+assert.throws(()=>aggregate([{source:'a',rank:1},{source:'a',rank:2}]));
+console.log('Browser aggregation regression checks passed');

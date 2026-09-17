@@ -34,7 +34,15 @@ jobs:
           restore-keys: nfl-data-
       - run: python -m unittest discover -s tests -v
       - run: python -m pipeline.run
+      - run: python -m pipeline.consensus
+      - run: cp research/consensus-history.json site/data/historical-accuracy.json
       - run: python -m unittest discover -s tests -v
+      - run: node tests/consensus.test.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: consensus-snapshot
+          path: site/data/consensus.json
+          retention-days: 90
       - uses: actions/upload-artifact@v4
         with:
           name: audit-${{ github.run_id }}
@@ -42,6 +50,8 @@ jobs:
             output/run-manifest.json
             site/data/validation-2025.json
             site/data/projections.json
+            site/data/consensus.json
+            site/data/historical-accuracy.json
           retention-days: 14
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
@@ -57,3 +67,35 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+  archive:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/download-artifact@v4
+        with:
+          name: consensus-snapshot
+          path: snapshot
+      - name: Preserve dated ranks in repository history
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          raw = Path('snapshot/consensus.json').read_bytes()
+          data = json.loads(raw)
+          folder = Path('history') / str(data['season'])
+          folder.mkdir(parents=True, exist_ok=True)
+          (folder / f"week-{data['week']:02}.json").write_bytes(raw)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add history
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive dated weekly analyst ranks"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

@@ -3,9 +3,20 @@
 A free-data fantasy football research dashboard, hosted as static files on GitHub Pages.
 Python runs in GitHub Actions, on a desktop, or in a Linux container. Pages does not execute Python.
 
-**Experimental v0.3.** This is an independently implemented statistical baseline, not a clone
-of Subvertadown, MonCalFF, or Boris Chen. The dashboard shows both the fitted model and a
-rolling baseline, including where the model loses. No claim of superiority over experts.
+**v0.4: weekly PPR analyst consensus.** The main board combines ten named analysts,
+with source selection, individual ranks, coverage gates, optional outlier filtering,
+and a retrospective 2024/2025 accuracy audit. No account or paid feed required.
+The independent v0.3 projection model remains accessible under **Model lab**.
+Fieldwork is not affiliated with FantasyPros or the contributing publishers.
+
+The historical audit covers seven analysts, 952 archived positional lists, and actual
+PPR scores. It checks publication times but cannot certify immutable pregame history.
+Footballers' old ranking URLs redirect to current rankings, so their historical accuracy
+is unverified here. Details, source evidence, limitations, and measured results:
+[consensus research report](research/CONSENSUS-v0.4.md).
+
+Outlier filtering is **off by default**: it improved rank correlation in only 3 of the
+8 tested season/position comparisons. Both filtered and raw means remain available.
 
 ## What works
 
@@ -28,6 +39,9 @@ python -m venv .venv
 python -m pip install -r requirements.txt
 python -m unittest discover -s tests -v
 python -m pipeline.run
+python -m pipeline.consensus
+python -c "import shutil; shutil.copyfile('research/consensus-history.json', 'site/data/historical-accuracy.json')"
+node tests/consensus.test.cjs
 python -m http.server 8080 --bind 127.0.0.1 --directory site
 ```
 
@@ -58,7 +72,10 @@ Vercel subscription, or external backend is needed. Availability/cost remain sub
 plan and usage rules. Workflow timeout is 25 minutes. Audit artifacts (including current
 projections and validation rows) are retained for 14 days, not indefinitely.
 
-To retain a full season of forecast snapshots, download audit artifacts before they expire.
+Analyst snapshots additionally receive a 90-day artifact and a committed weekly file
+under `history/`. Git history preserves earlier captures; the archive job needs
+`contents: write`. These observed captures support future pregame evaluation without
+depending on mutable upstream historical pages. Model forecast artifacts still expire.
 Historical input files can be revised upstream; hashes detect changes but are not copies of the inputs.
 The website publishes only source metadata and derived outputs, not cached raw datasets.
 
