@@ -90,6 +90,28 @@ def aggregate(ranks, trim=True):
                 low=min(values), high=max(values), count=len(values), excluded=sorted(excluded))
 
 
+def merge_publisher(rows, incoming):
+    """Join names conservatively, defenses by team; ambiguous names get no false join."""
+    # Verified against ESPN IDs 4371733 / 4241372 and nflverse player identities.
+    aliases = {'kennethgainwell': 'kennygainwell', 'marquisebrown': 'hollywoodbrown'}
+    def identity(name):
+        key = name_key(name)
+        return aliases.get(key, key)
+    for r in incoming:
+        team = normalize_team(r['team'])
+        candidates = [key for key, row in rows.items() if row['position'] == r['position']
+                      and ((r['position'] == 'DST' and team and row['team'] == team)
+                           or identity(row['name']) == identity(r['name']))]
+        if len(candidates) > 1 and team:
+            candidates = [key for key in candidates if rows[key]['team'] == team]
+        key = candidates[0] if len(candidates) == 1 else f"{r['position']}:{r['source']}-{r['player_id']}"
+        row = rows.setdefault(key, dict(id=key, name=r['name'], position=r['position'],
+                                       team=team, matchup='', ranks=[]))
+        if any(v['source'] == r['source'] for v in row['ranks']):
+            raise ValueError('Publisher contributed twice to one player')
+        row['ranks'].append({k: r[k] for k in ['source', 'rank', 'published']})
+
+
 def build(year, week, refresh=False):
     sources, manifest, rows, health = registry(), [], {}, []
     jobs = [(s['id'], year, week, pos) for s in sources for pos in POSITIONS]
@@ -137,9 +159,28 @@ def build(year, week, refresh=False):
             sources.append(s)
             for pos in POSITIONS:
                 health.append(dict(source=s['id'], position=pos, status='unavailable', reason=str(exc)))
+    from .publishers import registry as publisher_registry, FETCHERS, comparisons
+    for s in publisher_registry():
+        sources.append(s)
+        try:
+            incoming, provenance = FETCHERS[s['id']](year, week, refresh)
+            # An invalid join must not leave a partially admitted source behind.
+            import copy
+            merged = copy.deepcopy(rows)
+            merge_publisher(merged, incoming)
+            rows = merged
+            manifest.extend(provenance)
+            for pos in POSITIONS:
+                count = sum(r['position'] == pos for r in incoming)
+                health.append(dict(source=s['id'], position=pos, count=count,
+                    status='available' if count else 'unavailable',
+                    reason='' if count else 'No verified free projection feed for this position'))
+        except Exception as exc:
+            for pos in POSITIONS:
+                health.append(dict(source=s['id'], position=pos, status='unavailable', reason=str(exc)))
     if not rows:
         raise RuntimeError('No current-week analyst data: refusing an empty/stale publication')
-    bundle = dict(version='0.4.0', season=year, week=week, scoring='PPR',
+    bundle = dict(version='0.5.0', season=year, week=week, scoring='PPR', comparisons=comparisons(),
         generated_at=datetime.now(timezone.utc).isoformat(), sources=sources, health=health,
         players=list(rows.values()), manifest=manifest,
         notes=['Named analysts are not independent platforms. Shared information can correlate their errors.',
