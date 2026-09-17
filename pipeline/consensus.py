@@ -110,6 +110,8 @@ def merge_publisher(rows, incoming):
         if any(v['source'] == r['source'] for v in row['ranks']):
             raise ValueError('Publisher contributed twice to one player')
         row['ranks'].append({k: r[k] for k in ['source', 'rank', 'published']})
+        if 'tier' in r:
+            row['ranks'][-1]['tier'] = r['tier']
 
 
 def build(year, week, refresh=False):
@@ -180,13 +182,13 @@ def build(year, week, refresh=False):
                 health.append(dict(source=s['id'], position=pos, status='unavailable', reason=str(exc)))
     if not rows:
         raise RuntimeError('No current-week analyst data: refusing an empty/stale publication')
-    bundle = dict(version='0.5.0', season=year, week=week, scoring='PPR', comparisons=comparisons(),
+    bundle = dict(version='0.5.1', season=year, week=week, scoring='PPR', comparisons=comparisons(),
         generated_at=datetime.now(timezone.utc).isoformat(), sources=sources, health=health,
         players=list(rows.values()), manifest=manifest,
         notes=['Named analysts are not independent platforms. Shared information can correlate their errors.',
                'Ranks are not projected points. K/DST scoring can differ by analyst; PPR does not standardize those rules.',
                'Historical accuracy remains retrospective, with explicit timestamp and archive limitations. No accuracy weighting.',
-               'Boris Chen and aggregate ECR are excluded to avoid counting the same analysts twice.'])
+               'Boris Chen is included by request as one derived-consensus vote. His FantasyPros inputs overlap other votes; deselect him to remove that additional influence.'])
     folder = ROOT / 'site/data'
     folder.mkdir(parents=True, exist_ok=True)
     temporary = folder / 'consensus.json.tmp'

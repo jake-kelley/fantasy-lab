@@ -1,5 +1,30 @@
 # Expanded free weekly sources — 2026-09-17
 
+## v0.5.1 amendment: Boris Chen included by explicit request
+
+The user requested Boris Chen after the v0.5 exclusion described below. He now contributes
+one selectable, default-enabled vote in every supported position: **14 sources total**.
+The original v0.5 exclusion is historical, not current behavior. Source selection and
+methodology disclose overlapping FantasyPros inputs. No independence or new accuracy claim.
+
+The publisher's [source repository](https://github.com/borisachen/fftiers) documents public
+CSV uploads to `https://s3-us-west-1.amazonaws.com/fftiers/out/weekly-{position}.csv`.
+RB/WR/TE use `-PPR`; QB/K/DST use the publisher's common position export. Import `Rank`
+as one vote and preserve `Tier` for display; do not confuse `Avg.Rank` or tier numbers
+with that positional vote. No API key, login or extraction from charts is required.
+
+CSVs have no explicit edition field. The adapter checks S3 `Last-Modified` against the
+requested Tuesday-to-Tuesday week derived from the publisher's public `config.R`, and
+requires the configured season to match. This is an **inferred edition**, not certified
+row-level metadata. The UI and manifest say so. Missing timestamps, out-of-week uploads,
+duplicate identities and noncontiguous ranks are rejected. A stale file reuploaded during
+the current week could evade this date gate; it does not certify underlying data freshness.
+
+All six live exports were uploaded September 17, 2026, in the configured Week 2 window.
+Local generation: 472 player identities, 73/84 available source-position feeds.
+32 Python tests plus Node regression checks pass, including wrong season/week rejection,
+the exclusive next-Tuesday boundary, invalid ranks, and tier preservation through joining.
+
 Fieldwork adds three contributing publishers to its ten existing individual analysts.
 These are 13 sources across five delivery platforms, not 13 independent statistical models.
 The existing seven-analyst retrospective audit is unchanged; new sources have no comparable

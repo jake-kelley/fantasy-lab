@@ -23,7 +23,8 @@ def registry():
             for key, name, family, kind, url in [
                 ('rotoballer', 'RotoBaller weekly PPR', 'RotoBaller', 'Publisher rankings', RB_URL + '?spreadsheet=ppr&league=Overall'),
                 ('espn', 'ESPN weekly projections', 'ESPN', 'Projection-derived ranks', 'https://fantasy.espn.com/football/players/projections'),
-                ('fftoday', 'FFToday weekly projections', 'FFToday', 'Projection-derived ranks', FFT_URL + '?LeagueID=107644')]]
+                ('fftoday', 'FFToday weekly projections', 'FFToday', 'Projection-derived ranks', FFT_URL + '?LeagueID=107644'),
+                ('boris', 'Boris Chen', 'Boris Chen / FantasyPros inputs', 'Derived consensus; overlaps other votes', 'https://www.borischen.co/')]]
 
 
 def validate_rows(rows):
@@ -189,13 +190,16 @@ def fetch_fftoday(year, week, refresh=False):
     return order_projections(rows), source.manifest
 
 
-FETCHERS = {'rotoballer': fetch_rotoballer, 'espn': fetch_espn, 'fftoday': fetch_fftoday}
+def fetch_boris(year, week, refresh=False):
+    from .boris import fetch
+    return fetch(year, week, refresh)
+
+
+FETCHERS = {'rotoballer': fetch_rotoballer, 'espn': fetch_espn, 'fftoday': fetch_fftoday, 'boris': fetch_boris}
 
 
 def comparisons():
-    return [dict(name='Boris Chen', url='https://www.borischen.co/',
-                 reason='Tiers derived from FantasyPros rankings. Reference only: adding a vote would reuse underlying analyst opinions.'),
-            dict(name='theScore / Eric Patterson', url='https://www.thescore.com/author/eric-patterson',
+    return [dict(name='theScore / Eric Patterson', url='https://www.thescore.com/author/eric-patterson',
                  reason='Current weekly rankings are labeled half-PPR. Excluded from this full-PPR consensus.'),
             dict(name='Rotoworld / Patrick Daugherty', url='https://www.nbcsports.com/fantasy/football',
                  reason='Free weekly ranks found, but their full-PPR scoring basis is not verified. No vote until scoring is confirmed.')]

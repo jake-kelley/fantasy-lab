@@ -3,8 +3,9 @@
 A free-data fantasy football research dashboard, hosted as static files on GitHub Pages.
 Python runs in GitHub Actions, on a desktop, or in a Linux container. Pages does not execute Python.
 
-**v0.5: expanded weekly PPR consensus.** The main board combines ten named analysts
-with RotoBaller's PPR rankings and ESPN / FFToday weekly projection-derived ranks,
+**v0.5.1: expanded weekly PPR consensus.** The main board combines ten named analysts
+with RotoBaller's PPR rankings, ESPN / FFToday weekly projection-derived ranks,
+and Boris Chen's derived consensus (14 sources),
 with source selection, individual ranks, coverage gates, optional outlier filtering,
 and a retrospective 2024/2025 accuracy audit. No account or paid feed required.
 The independent v0.3 projection model remains accessible under **Model lab**.
@@ -16,6 +17,9 @@ Footballers' old ranking URLs redirect to current rankings, so their historical 
 is unverified here. Details, source evidence, limitations, and measured results:
 [consensus research report](research/CONSENSUS-v0.4.md).
 Expansion sources, validation, and exclusions: [v0.5 source report](research/SOURCES-v0.5.md).
+Boris Chen is included by user request as one selectable vote. His FantasyPros inputs
+overlap other sources. His original tiers appear in player details; new sources remain
+outside the seven-analyst historical audit.
 
 Outlier filtering is **off by default**: it improved rank correlation in only 3 of the
 8 tested season/position comparisons. Both filtered and raw means remain available.

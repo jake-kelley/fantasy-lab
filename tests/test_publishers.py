@@ -4,9 +4,26 @@ import unittest
 
 from pipeline.consensus import merge_publisher, registry
 from pipeline.publishers import parse_rotoballer, parse_espn, parse_fftoday, order_projections
+from pipeline.boris import parse as parse_boris
 
 
 class PublisherTests(unittest.TestCase):
+    def test_boris_upload_week_gate_and_tier(self):
+        config = 'year <- 2026\nweekonetuesday <- "2026-09-08"'
+        csv = 'Rank,Player.Name,Tier\n1,Jahmyr Gibbs,1\n2,Bijan Robinson,1\n'
+        stamp = 'Thu, 17 Sep 2026 13:00:53 GMT'
+        rows = parse_boris(csv, stamp, config, 2026, 2, 'RB')
+        self.assertEqual([(r['rank'],r['tier']) for r in rows], [(1,1),(2,1)])
+        for year, week in [(2025,2),(2026,1),(2026,3)]:
+            with self.assertRaises(ValueError): parse_boris(csv, stamp, config, year, week, 'RB')
+        with self.assertRaises(ValueError):
+            parse_boris(csv, 'Tue, 22 Sep 2026 00:00:00 GMT', config, 2026, 2, 'RB')
+        with self.assertRaises(ValueError):
+            parse_boris(csv.replace('2,Bijan','1,Bijan'), stamp, config, 2026, 2, 'RB')
+        merged = {}
+        merge_publisher(merged, rows)
+        self.assertEqual(next(iter(merged.values()))['ranks'][0]['tier'], 1)
+
     def test_rotoballer_edition_and_positional_order(self):
         page = 'var rbRankings = ' + json.dumps(dict(currentWeek='2', season='2026')) + ';'
         data = dict(total=3, data=[dict(rank=i, position=pos, player_id=i,
