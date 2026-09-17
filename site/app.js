@@ -3,6 +3,21 @@ const $ = id => document.getElementById(id);
 const esc = x => String(x ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = n => Number.isFinite(n) ? n.toFixed(1) : '—';
 let data, position = 'QB', view = 'projections', visible = [];
+let pointBounds = [0, 1];
+function shade(strength, favorable=true){
+  const t=Math.max(0,Math.min(1,strength));
+  const light=favorable?[239,247,240]:[252,240,236], dark=favorable?[23,102,87]:[151,53,43];
+  const rgb=light.map((v,i)=>Math.round(v+(dark[i]-v)*t));
+  const linear=rgb.map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4;});
+  const luminance=.2126*linear[0]+.7152*linear[1]+.0722*linear[2];
+  return `background-color:rgb(${rgb.join(',')});color:${luminance>.179?'#000':'#fff'}`;
+}
+function pointStyle(f){
+  const v=f?.mean?.[scoring()];
+  if(!Number.isFinite(v)) return '';
+  const [low,high]=pointBounds;
+  return shade(high===low ? .5 : (v-low)/(high-low));
+}
 const forecast = (p,w=Number($('week').value)) => p.forecasts.find(f=>f.week===w);
 const scoring = () => Number($('scoring').value);
 const eligible = (p,f) => {
@@ -39,6 +54,10 @@ function render(){
   if(!data) return;
   const week=Number($('week').value), s=scoring();
   visible=filtered();
+  // Search never rescales colors. One scale spans all three forecast weeks.
+  const values=data.players.filter(p=>position==='FLEX'?['RB','WR','TE'].includes(p.pos):p.pos===position)
+    .flatMap(p=>p.forecasts.filter(f=>eligible(p,f)).map(f=>f.mean[s])).filter(Number.isFinite);
+  pointBounds=values.length?[Math.min(...values),Math.max(...values)]:[0,1];
   $('board-title').textContent=`Week ${week} · ${position==='DST'?'Defense / special teams':position} outlook`;
   $('count').textContent=`${visible.length} OPTIONS`;
   $('score-note').textContent=position==='DST'?'D/ST v0.2: compact inputs; league-average turnover/TD/block/safety estimates. Scoreboard points allowed; platform scoring may differ.':
@@ -51,7 +70,7 @@ function render(){
     let separator='';
     if(leader-mean>2){tier++;leader=mean;separator=`<tr class="tier"><td colspan="8">TIER ${tier} · WITHIN 2 POINTS OF LEADER · DISPLAY GROUP ONLY</td></tr>`;}
     const width=Math.min(100,Math.max(5,(f.p90[s]-f.p10[s])*2));
-    return separator+`<tr><td>${i+1}</td><td><button class="player-button" data-player="${esc(p.id)}">${esc(p.name)}</button><span class="matchup">${esc(p.team)} · ${esc(p.pos)} &nbsp; ${f.home?'vs':'@'} ${esc(f.opponent)}</span></td><td class="points">${fmt(mean)}</td><td>${fmt(f.baseline[s])}</td><td class="range">${fmt(f.p10[s])} — ${fmt(f.p90[s])}<div class="range-bar"><i style="width:${width}%"></i></div></td><td>${nextCell(p,week+1)}</td><td>${nextCell(p,week+2)}</td><td>${status(p,f)}</td></tr>`;
+    return separator+`<tr><td>${i+1}</td><td><button class="player-button" data-player="${esc(p.id)}">${esc(p.name)}</button><span class="matchup">${esc(p.team)} · ${esc(p.pos)} &nbsp; ${f.home?'vs':'@'} ${esc(f.opponent)}</span></td><td class="points projection-color" style="${pointStyle(f)}">${fmt(mean)}</td><td>${fmt(f.baseline[s])}</td><td class="range">${fmt(f.p10[s])} — ${fmt(f.p90[s])}<div class="range-bar"><i style="width:${width}%"></i></div></td><td class="projection-color" style="${pointStyle(forecast(p,week+1))}">${nextCell(p,week+1)}</td><td class="projection-color" style="${pointStyle(forecast(p,week+2))}">${nextCell(p,week+2)}</td><td>${status(p,f)}</td></tr>`;
   }).join('') || '<tr><td colspan="8" class="empty">No matching players. Try another position, or include deep bench / limited history.</td></tr>';
   renderMatchups(); renderValidation();
 }
@@ -66,8 +85,8 @@ function renderMatchups(){
   $('heatmap').innerHTML=[...teams].sort(([a],[b])=>a.localeCompare(b)).map(([team,x])=>
     `<tr><td>${esc(team)}</td><td>${x.home?'vs':'@'} ${esc(x.opp)}</td>${positions.map(pos=>{
       const v=x.values[pos];if(v===undefined) return '<td>—</td>';
-      const opacity=Math.min(.45,Math.abs(v)/25);
-      return `<td style="background:rgba(${v>=0?'73,144,106':'186,99,85'},${opacity})">${v>0?'+':''}${fmt(v)}</td>`;
+      const extent=Math.max(1,...[...teams.values()].map(t=>Math.abs(t.values[pos]??0)));
+      return `<td style="${shade(Math.abs(v)/extent,v>=0)}">${v>0?'+':''}${fmt(v)}</td>`;
     }).join('')}</tr>`).join('');
 }
 function renderValidation(){
